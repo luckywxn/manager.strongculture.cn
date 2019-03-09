@@ -1,0 +1,7 @@
+2018-05-26 09:46:51	UPDATE LOW_PRIORITY `concap_user` SET lastlogintime=NOW(),`lastloginip`='127.0.0.1' WHERE sysno=1
+2018-05-26 12:33:50	UPDATE LOW_PRIORITY `concap_shopping_trolley` SET `number`='7',`isdel`=0,updated_at=NOW() WHERE sysno=3
+2018-05-26 12:33:55	UPDATE LOW_PRIORITY `concap_shopping_trolley` SET `number`='8',`isdel`=0,updated_at=NOW() WHERE sysno=3
+2018-05-26 12:34:01	UPDATE LOW_PRIORITY `concap_shopping_trolley` SET `number`='7',`isdel`=0,updated_at=NOW() WHERE sysno=3
+2018-05-26 12:34:02	UPDATE LOW_PRIORITY `concap_shopping_trolley` SET `number`='6',`isdel`=0,updated_at=NOW() WHERE sysno=3
+2018-05-26 12:42:48	UPDATE LOW_PRIORITY `concap_shopping_trolley` SET `number`='2',`isdel`=0,updated_at=NOW() WHERE sysno=2
+2018-05-29 21:10:17	UPDATE LOW_PRIORITY `concap_user` SET lastlogintime=NOW(),`lastloginip`='127.0.0.1' WHERE sysno=1

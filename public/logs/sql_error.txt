@@ -1,0 +1,58 @@
+================================================================================
+time: 2018-12-23 23:28:06
+from: 114.84.32.213
+page: /orders/list
+error: 42S02：["42S02",1146,"Table 'concap.concap_orders' doesn't exist"]
+param: SELECT count(co.`sysno`) FROM `concap_orders` co
+                LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno  WHERE co.`isdel` = 0 AND  cu.`sysno` = 1 
+
+================================================================================
+time: 2018-12-23 23:28:18
+from: 114.84.32.213
+page: /orders/list
+error: 42S02：["42S02",1146,"Table 'concap.concap_orders' doesn't exist"]
+param: SELECT count(co.`sysno`) FROM `concap_orders` co
+                LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno  WHERE co.`isdel` = 0 AND  cu.`sysno` = 1 
+
+================================================================================
+time: 2018-12-23 23:34:19
+from: 114.84.32.213
+page: /orders/list
+error: 42S22：["42S22",1054,"Unknown column 'co.isdel' in 'where clause'"]
+param: SELECT count(co.`sysno`) FROM `concap_orders` co
+                LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno  WHERE co.`isdel` = 0 AND  cu.`sysno` = 1 
+
+================================================================================
+time: 2018-12-23 23:34:27
+from: 114.84.32.213
+page: /orders/list
+error: 42S22：["42S22",1054,"Unknown column 'co.isdel' in 'where clause'"]
+param: SELECT count(co.`sysno`) FROM `concap_orders` co
+                LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno  WHERE co.`isdel` = 0 AND  cu.`sysno` = 1 
+
+================================================================================
+time: 2018-12-23 23:35:27
+from: 114.84.32.213
+page: /orders/list
+error: 42S02：["42S02",1146,"Table 'concap.concap_orders_detail' doesn't exist"]
+param: SELECT co.sysno,co.ordersno,co.logisticsno,co.orderstatus,cua.phone,cua.address,sum(cg.price*cod.number) totalprice,co.created_at,co.paytime_at,co.sendtime_at,cu.nickname
+                        FROM `concap_orders` co
+                        LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno
+                        LEFT JOIN concap_orders_detail cod ON cod.orders_sysno = co.sysno
+                        LEFT JOIN concap_goods cg ON cg.sysno = cod.goods_sysno
+                        LEFT JOIN concap_user_address cua ON cua.sysno = co.address_sysno
+                         WHERE co.`isdel` = 0 AND  cu.`sysno` = 1  GROUP BY co.sysno  ORDER BY co.created_at DESC
+
+================================================================================
+time: 2018-12-23 23:35:40
+from: 114.84.32.213
+page: /orders/list
+error: 42S02：["42S02",1146,"Table 'concap.concap_orders_detail' doesn't exist"]
+param: SELECT co.sysno,co.ordersno,co.logisticsno,co.orderstatus,cua.phone,cua.address,sum(cg.price*cod.number) totalprice,co.created_at,co.paytime_at,co.sendtime_at,cu.nickname
+                        FROM `concap_orders` co
+                        LEFT JOIN concap_user cu ON cu.sysno = co.user_sysno
+                        LEFT JOIN concap_orders_detail cod ON cod.orders_sysno = co.sysno
+                        LEFT JOIN concap_goods cg ON cg.sysno = cod.goods_sysno
+                        LEFT JOIN concap_user_address cua ON cua.sysno = co.address_sysno
+                         WHERE co.`isdel` = 0 AND  cu.`sysno` = 1  GROUP BY co.sysno  ORDER BY co.created_at DESC
+
