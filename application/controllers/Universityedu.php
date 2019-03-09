@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=gb2312");
 /**
  * Created by PhpStorm.
  * User: lucky
@@ -18,25 +19,21 @@ class UniversityeduController extends Yaf_Controller_Abstract
     }
 
     /*
-    *大学城市列表
-    */
-    public function listAction(){
-        $U = new UniversityeduModel(Yaf_Registry::get("db"),Yaf_Registry::get('mc'));
-        $city = $U->getcitylist();
-        $params['city'] = $city;
-        $this->getView()->make('universityedu.list',$params);
-    }
-
-    /*
-    *各城市大学列表
-    */
-    public function universitylistAction(){
+     *
+     */
+    public function UniversityEduListAction(){
         $request = $this->getRequest();
-        $id = $request->getParam('id',0);
-        $U = new UniversityeduModel(Yaf_Registry::get("db"),Yaf_Registry::get('mc'));
-        $university = $U->getuniversitybycityid($id);
-        $params['university'] = $university;
-        $this->getView()->make('universityedu.universitylist',$params);
+        $subject = $request->getParam('subject', 1);
+        $content = @file("upload/university/$subject.txt");
+
+        echo "<div class='bjui-pageHeader ' style='background-color:#fff;height:550px;position:relative; overflow:auto'>";
+
+        if ($content)
+            foreach ($content as $item) {
+                echo $item . "<br>";
+            }
+
+        echo "</div>";
     }
 
     public function fudanmrchenlistAction()

@@ -30,6 +30,9 @@ class UserModel
         $this->mch = $mch;
     }
 
+
+
+
     /**
      * 查询用户列表
      * @author Alan
@@ -39,25 +42,25 @@ class UserModel
     {
         $filter = array();
         if (isset($params['username']) && $params['username'] != '') {
-            $filter[] = " `username` LIKE '%".$params['username']."%' ";
+            $filter[] = " su.`username` LIKE '%".$params['username']."%' ";
         }
         if (isset($params['realname']) && $params['realname'] != '') {
-            $filter[] = " `realname` LIKE '%".$params['realname']."%' ";
+            $filter[] = " su.`realname` LIKE '%".$params['realname']."%' ";
         }
         if (isset($params['status']) && $params['status'] != '') {
-            $filter[] = " `status` = ".$params['status']." ";
+            $filter[] = " su.`status` = ".$params['status']." ";
         }
         $rows=$params['pageSize'];
-        $page=$params['pageCurrent'];
 
-        $where =" WHERE `isdel` = 0 ";
+        $where =" WHERE su.`isdel` = 0 ";
         if (1 <= count($filter)) {
             $where .= "AND ". implode(' AND ', $filter);
         }
+        $order = " ORDER BY sysno ASC";
 
         $result=array('totalRow'=>0,'totalPage'=>0,'list'=>array());
 
-        $sql = "SELECT count(`sysno`) FROM `strongculture_system_user` {$where}";
+        $sql = "SELECT count(su.`sysno`) FROM `strongculture_system_user` su {$where}";
         $result['totalRow']=$this->dbh->select_one($sql);
 
         $result['totalPage'] = ceil($result['totalRow'] / $rows);
@@ -65,7 +68,10 @@ class UserModel
         $this->dbh->set_page_num($params['pageCurrent']);
         $this->dbh->set_page_rows($params['pageSize']);
 
-        $sql = "SELECT * FROM `strongculture_system_user` ".$where;
+        $sql = "SELECT su.*,sr.rolename FROM `strongculture_system_user` su
+                left join `strongculture_system_user-r-role` urr on urr.user_sysno = su.sysno
+                left join strongculture_system_role sr on sr.sysno = urr.role_sysno
+                ".$where.$order;
         $result['list'] = $this->dbh->select_page($sql);
         
         return $result;
@@ -87,7 +93,6 @@ class UserModel
         return $this->dbh->select_one($sql);
     }
 
-
     /**
      * 添加用户
      * @author Alan
@@ -104,7 +109,6 @@ class UserModel
         $this->dbh->begin();
         try{
             $res = $this->dbh->insert('strongculture_system_user', $params);
-
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
@@ -112,7 +116,6 @@ class UserModel
 
             $id = $res;
             $res = $this->dbh->delete('strongculture_system_user-r-role', 'user_sysno=' . intval($id));
-
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
@@ -126,7 +129,6 @@ class UserModel
                             'role_sysno' => $value,
                         );
                         $res = $this->dbh->insert('strongculture_system_user-r-role', $privilegesdata);
-
                         if (!$res) {
                             $this->dbh->rollback();
                             return false;
@@ -170,7 +172,6 @@ class UserModel
         $this->dbh->begin();
         try {
             $res = $this->dbh->update('strongculture_system_user', $data, 'sysno=' . intval($id));
-
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
@@ -190,8 +191,8 @@ class UserModel
                             'user_sysno' => $id,
                             'role_sysno' => $value,
                         );
-                        $res = $this->dbh->insert('strongculture_system_user-r-role', $privilegesdata);
 
+                        $res = $this->dbh->insert('strongculture_system_user-r-role', $privilegesdata);
                         if (!$res) {
                             $this->dbh->rollback();
                             return false;
@@ -225,13 +226,14 @@ class UserModel
      **/
     public function UserLogin($params)
     {
-        $sql = "select u.* from strongculture_system_user u
-                where u.`username` = '".$params['username']."' AND u.`status` = 1 AND u.isdel = 0";
+        $sql = "select * from strongculture_system_user
+                where `status` = 1 AND isdel = 0 AND username = '{$params['username']}'";
 
         $row = $this->dbh->select_row($sql);
 
         if(is_array($row) && count($row) > 0){
             $hash = $row['userpwd'];
+
             if (password_verify($params['userpwd'], $hash)) {
                 return $row;
             }else {
@@ -279,9 +281,7 @@ class UserModel
         $where = ' isdel =0 AND ';
         $where .= implode(' OR ', $filter); 
         $sql =  "SELECT sysno FROM strongculture_system_user WHERE $where";
-
         $data = $this->dbh->select_one($sql);
-
         return $data;
     }
 

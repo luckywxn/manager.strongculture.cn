@@ -1,5 +1,7 @@
 <?php
 use Gregwar\Captcha\CaptchaBuilder;
+require_once('Ucpaas.class.php');
+
 
 class IndexController extends Yaf_Controller_Abstract {
 	/**
@@ -20,9 +22,19 @@ class IndexController extends Yaf_Controller_Abstract {
 	public function IndexAction() {
 		$params = array();
 		$S = new SystemModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
+		$T = new TravelModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
 		$params['user']  = Yaf_Registry::get(SSN_VAR);
-		$navtab =  $S->getPrivilegeListByPidUid($params['user']['sysno'],0);
-		$params['navtab'] = $navtab;
+		$params['navtab']  =  $S->getPrivilegeListByPidUid($params['user']['sysno'],0);
+
+		$params['role'] = $S->getRoleByUserId($params['user']['sysno']);
+		$travelplans =  $T->getTravellist2($params['user']['sysno'],2);
+		$travelhistorys =  $T->getTravellist2($params['user']['sysno'],1);
+		foreach($travelplans as $item){
+			$params['travelplan'][] = $item['placename'];
+		}
+		foreach($travelhistorys as $item){
+			$params['travelhistory'][] = $item['placename'];
+		}
 
 		$this->getView()->make('index.index',$params);
 	}
@@ -47,12 +59,23 @@ class IndexController extends Yaf_Controller_Abstract {
 		$request = $this->getRequest();
 		$params['username'] = $request->getpost('username','');
 		$params['userpwd'] = $request->getpost('passwordhash','');
+
+		$captcha = $request->getpost('captcha','');
+		$session = Yaf_Session::getInstance();
+		$phrase = $session->get('phrase');
+		if($phrase != $captcha){
+			$messgin = array();
+			$messgin['msg'] = "验证码错误";
+			$this->getView()->make('index.login',$messgin);
+			return;
+		}
+
 		$S = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
+
 		if($user = $S->userLogin($params))
 		{
 			$ip = COMMON::getclientIp();
 			$userUpdate = array('lastlogintime'=>'=NOW()','lastloginip'=>$ip);
-
 			if($S->setUserInfo($userUpdate,$user['sysno']))
 			{
 				unset($user['userpwd']);
@@ -73,11 +96,9 @@ class IndexController extends Yaf_Controller_Abstract {
 		$request = $this->getRequest();
 		$params['username'] = $request->getpost('username','');
 		$params['userpwd'] = $request->getpost('passwordhash','');
-
 		$S = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
 		if($user = $S->userLogin($params))
 		{
-
 			$ip = COMMON::getclientIp();
 			$userUpdate = array('lastlogintime'=>'=NOW()','lastloginip'=>$ip);
 
@@ -92,10 +113,10 @@ class IndexController extends Yaf_Controller_Abstract {
 
 			COMMON::result(300,'用户名密码错误');
 		}
+
 	}
 
 	public function changepasswordAction() {
-
         $user = Yaf_Registry::get(SSN_VAR);
 		$id = $user['sysno'];
 		if(!$id)
@@ -105,10 +126,8 @@ class IndexController extends Yaf_Controller_Abstract {
 		}
 		$U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
 		$action = "/user/passwordEditJson/";
-
         $params = $U->getUserById($id);
         $params['userRoles'] = $U->getUserPrivilege($id);
-
         $params['id'] =  $id;
         $params['action'] =  $action;
 
@@ -162,15 +181,12 @@ class IndexController extends Yaf_Controller_Abstract {
 
 				$res[] = $menu;
 			}
-
-
 		echo json_encode($res);
 
 	}
 
 	public function logOutAction()
 	{
-
 		$arr = array ();
 		Yaf_Session::getInstance ()->set ( SSN_VAR, $arr );
 		header("Location: /login");
@@ -182,10 +198,8 @@ class IndexController extends Yaf_Controller_Abstract {
 		$builder->build();
 		$session = Yaf_Session::getInstance();
 		$session->set('phrase',$builder->getPhrase());
-
 		header('Content-type: image/jpeg');
 		$builder->output();
-		
 	}
 
 
@@ -207,37 +221,37 @@ class IndexController extends Yaf_Controller_Abstract {
 		$U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
 		if($U->getUserByName($username)){
 			$params = array(
-					'message'=>'该用户已存在，不能重复注册！'
+				'message'=>'该用户已存在，不能重复注册！'
 			);
 		}else{
 			if($code ==$_SESSION['vcode']){
 				$data = $U->getUserByName($reference);
 				if($data){
 					$input = array(
-							'username'=>$request->getPost('username',''),
-							'userpwd'=> password_hash($request->getPost('passwordhash',''), 1, ['cost' => 10]),
-							'reference'=>$data['sysno'],
-							'created_at'	=>'=NOW()',
-							'updated_at'	=>'=NOW()'
+						'username'=>$request->getPost('username',''),
+						'userpwd'=> password_hash($request->getPost('passwordhash',''), 1, ['cost' => 10]),
+						'reference'=>$data['sysno'],
+						'created_at'	=>'=NOW()',
+						'updated_at'	=>'=NOW()'
 					);
 					$privileges = array(11);
 					if($U->addUser($input,$privileges)){
 						$params = array(
-								'message'=>'恭喜你，注册成功！'
+							'message'=>'恭喜你，注册成功！'
 						);
 					}else{
 						$params = array(
-								'message'=>'注册失败！'
+							'message'=>'注册失败！'
 						);
 					}
 				}else{
 					$params = array(
-							'message'=>'推荐人不存在，注册失败！'
+						'message'=>'推荐人不存在，注册失败！'
 					);
 				}
 			}else{
 				$params = array(
-						'message'=>'验证码错误！'
+					'message'=>'验证码错误！'
 				);
 			}
 		}

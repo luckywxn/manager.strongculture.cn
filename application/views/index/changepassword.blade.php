@@ -1,7 +1,7 @@
 <div class="bjui-pageContent">
     <form action="{{$action}}" data-toggle="validate" method="post" data-close-current="true">
         <input type="hidden" name="id" value="{{$id}}">
-         <div class="bjui-row col-1">
+        <div class="bjui-row col-1">
             <label class="row-label">姓名:</label>
             <div class="row-input">{{$realname}}</div>
             <label class="row-label">登陆账号:</label>

@@ -35,10 +35,7 @@ class SystemModel {
 	 * @return 数组
 	 */
 	public function getPrivilegeListByPid($pid = 0, $type = 0) {
-
-
         $filter = array();
-
         if($pid > -1){
             $filter[] = " `parent_sysno` = $pid ";
         }
@@ -51,8 +48,6 @@ class SystemModel {
         }
 
         $sql = "select * from strongculture_system_privilege ".$where;
-
-
         return  $this->dbh->select($sql);
 	}
 
@@ -64,8 +59,6 @@ class SystemModel {
 	 */
 	public function getPrivilegeListByPidUid($uid =0,$pid = 0, $type = 0) {
 		$arr = array();
-
-		
 		if($uid){
 			$sql = "select distinct p.* from `strongculture_system_privilege` p ,   `strongculture_system_role-r-privilege` rp , `strongculture_system_user-r-role` ur where ((rp.privilege_sysno = p.sysno and rp.role_sysno = ur.role_sysno and ur.user_sysno = '".$uid."') or p.needcheck = 0 ) and p.isdel = 0 and p.status = 1 ";
 			if ($pid > -1) {
@@ -179,7 +172,6 @@ class SystemModel {
                     $flag='yes';
                     break;
                 }
-
             }
             if($result['list'][$i]['parent_sysno']==0||$flag=='no'){
                 $result['list'][$i]['parent_sysno']=null;
@@ -192,17 +184,13 @@ class SystemModel {
 	public function addRole($data, $privileges = "") {
 		$this->dbh->begin();
 		try {
-			//strongculture_system_role update
 			$res = $this->dbh->insert('strongculture_system_role', $data);
-
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
 			}
 
 			$id = $res;
-
-			//strongculture_system_role-r-privilege delete
 			$res = $this->dbh->delete('strongculture_system_role-r-privilege', 'role_sysno=' . intval($id));
 
 			if (!$res) {
@@ -243,17 +231,13 @@ class SystemModel {
 	public function updateRole($id = 0, $data = array(), $privileges = "") {
 		$this->dbh->begin();
 		try {
-			//strongculture_system_role update
 			$res = $this->dbh->update('strongculture_system_role', $data, 'sysno=' . intval($id));
 
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
 			}
-
-			//strongculture_system_role-r-privilege delete
 			$res = $this->dbh->delete('strongculture_system_role-r-privilege', 'role_sysno=' . intval($id));
-
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
@@ -261,14 +245,12 @@ class SystemModel {
 
 			if ($privileges !== "") {
 				$privilegeArr = explode(",", $privileges);
-
 				if (!empty($privilegeArr)) {
 					foreach ($privilegeArr as $value) {
 						$privilegesdata = array(
 							'role_sysno' => $id,
 							'privilege_sysno' => $value,
 						);
-						//strongculture_system_role-r-privilege insert
 						$res = $this->dbh->insert('strongculture_system_role-r-privilege', $privilegesdata);
 
 						if (!$res) {
@@ -279,7 +261,6 @@ class SystemModel {
 
 				}
 			}
-
 			$this->dbh->commit();
 			return true;
 

@@ -6,7 +6,7 @@
  * Date: 2017/1/1
  * Time: 22:02
  */
-class PrimaryschooleduController extends Yaf_Controller_Abstract
+class PrimarySchoolEduController extends Yaf_Controller_Abstract
 {
     /**
      * IndexController::init()
@@ -16,26 +16,6 @@ class PrimaryschooleduController extends Yaf_Controller_Abstract
     public function init()
     {
         # parent::init();
-    }
-
-    /*
-     * 小学年级汇总表
-     */
-    public function listAction(){
-        $params = array();
-        $this->getView()->make('primaryschooledu.list',$params);
-    }
-
-    /*
-     * 科目汇总表
-     */
-    public function subjectlistAction(){
-        $request = $this->getRequest();
-        $grade = $request->getParam('grade', 1);
-        $params = array(
-            'grade'=>$grade
-            );
-        $this->getView()->make('primaryschooledu.subjectlist',$params);
     }
 
     /*

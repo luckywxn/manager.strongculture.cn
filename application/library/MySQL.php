@@ -91,7 +91,6 @@ class MySQL {
 	//创建数据库连接
 	private function connect() {
 		if (!is_resource($this->dbh)) {
-			//($this->dbh = new PDO("mysql:host=$this->db_host;dbname=$this->database","$this->db_user","$this->db_pwd",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$this->charset}'"))) || $this->error();
 			($this->dbh = new PDO("mysql:host=$this->db_host;port=$this->db_port;dbname=$this->database","$this->db_user","$this->db_pwd")) || $this->error();
 			$this->dbh->exec("SET NAMES '{$this->charset}'");
 		}
@@ -132,7 +131,6 @@ class MySQL {
 
 	//查询全部数据，返回二维数组。
 	public function select($sql) {
-
 		if (2 <= func_num_args()) {
 			$sql = $this->fetch_args(func_get_args());
 		}
@@ -143,15 +141,12 @@ class MySQL {
 
 	//分页查询，返回查询页数据；与set_page_num、set_page_rows配合使用
 	public function select_page($sql) {
-
 		if (2 <= func_num_args()) {
 			$sql = $this->fetch_args(func_get_args());
 		}
-
 		$sql .= ' LIMIT ' . (($this->page_now - 1) * $this->page_rows) . ', ' . $this->page_rows;
 
-        //error_log($sql, 3, 'sql_print.txt');
-		($res = $this->dbh->query($sql)) || $this->error($sql);
+        ($res = $this->dbh->query($sql)) || $this->error($sql);
         return $res->fetchAll(PDO::FETCH_ASSOC);
 	}
 
@@ -161,6 +156,7 @@ class MySQL {
 			$sql = $this->fetch_args(func_get_args());
 		}
 		($res = $this->dbh->query($sql)) || $this->error($sql);
+
         return $res->fetch(PDO::FETCH_ASSOC);
 	}
 

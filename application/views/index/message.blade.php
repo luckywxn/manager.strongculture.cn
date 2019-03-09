@@ -1,106 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-CN" style="font-size: 100px;">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="robots" content="all">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="yes" name="apple-touch-fullscreen">
-    <meta content="telephone=no" name="format-detection">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <title>强势文化学习系统-移动版</title>
-    <!-- start 计算页面使用rem的尺寸 必须放在头部 -->
-    <script src="../../../common/js/stats.js" name="MTAH5" sid="500376155" cid="500376159"></script>
-    <script src="../../../common/js/calcSize.js"></script>
-    <!-- end 计算页面使用rem的尺寸 必须放在头部 -->
-    <link rel="stylesheet" href="../../../common/style/pact.css">
-    <style>
-        li{
-            text-align: center;
-            font-size: 18px;
-            color: red;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>强势文化学习系统</title>
+    <meta name="renderer" content="webkit">
+    <script src="/static/BJUI/B-JUI/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/BJUI/B-JUI/js/jquery.cookie.js"></script>
+    <script src="/static/BJUI/B-JUI/js/bjui-all.js"></script>
+    <link href="/static/BJUI/B-JUI/themes/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        html, body { height: 100%; overflow: hidden; }
+        body {
+            font-family: "Verdana", "Tahoma", "Lucida Grande", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+            background: url('/static/images/loginbg_03.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .form-control{height:42px;}
+        .main_box{position:absolute; top:45%; left:50%; margin:-200px 0 0 -180px; padding:15px 20px; width:360px; height:300px; min-width:320px; background:#FAFAFA; background:rgba(255,255,255,0.5); box-shadow: 1px 2px 8px rgba(255,255,255,0.5); border-radius:6px;}
+        .login_msg{height:30px;}
+        .input-group >.input-group-addon.code{padding:0;}
+        #captcha_img{cursor:pointer;}
+        .main_box .logo img{height:35px;}
+        @media (min-width: 768px) {
+            .main_box {margin-left:-240px; padding:15px 55px; width:480px;}
+            .main_box .logo img{height:50px;}
         }
     </style>
+    <script type="text/javascript">
+        $(function() {
+            choose_bg();
+            //   changeCode();
+
+            $("#captcha_img").click(function(){
+                changeCode();
+            });
+
+        });
+        function changeCode(){
+            $("#captcha_img").attr("src", "/index/vcode?t="+ (new Date().getTime()));
+        }
+        function choose_bg() {
+            var bg = Math.floor(Math.random() * 9 + 1);
+            $('body').css('background-image', 'url(/static/images/loginbg_0'+ 3 +'.jpg)');
+        }
+    </script>
 </head>
 <body>
-<div style="display:none;">
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-            <symbol id="icon-arrow-down" viewBox="0 0 16 16">
-                <title>arrow-down</title>
-                <path class="path1" d="M7.434 13.366c0.312 0.312 0.819 0.312 1.131 0l6.4-6.4c0.312-0.312 0.312-0.819 0-1.131s-0.819-0.312-1.131 0l-6.4 6.4h1.131l-6.4-6.4c-0.312-0.312-0.819-0.312-1.131 0s-0.312 0.819 0 1.131l6.4 6.4z"></path>
-            </symbol>
-            <symbol id="icon-arrow-left" viewBox="0 0 9 16">
-                <title>arrow-left</title>
-                <path class="path1" fill="none" stroke="#000" stroke-width="1.1429" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M8.196 0.75l-7.25 7.25 7.25 7.25"></path>
-            </symbol>
-            <symbol id="icon-arrow-left-white" viewBox="0 0 9 16">
-                <title>arrow-left-white</title>
-                <path class="path1" fill="none" stroke="#FFF" stroke-width="1.1429" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M8.196 0.75l-7.25 7.25 7.25 7.25"></path>
-            </symbol>
-            <symbol id="icon-arrow-right-full" viewBox="0 0 9 16">
-                <title>arrow-right-full</title>
-                <path class="path1" d="M0.691 15.163v-14.399l7.2 7.2z"></path>
-            </symbol>
-            <symbol id="icon-close" viewBox="0 0 16 16">
-                <title>close</title>
-                <path class="path1" d="M8.024 6.812l-6.263-6.263-1.212 1.212 6.263 6.263-6.263 6.263 1.212 1.212 6.263-6.263 6.263 6.263 1.212-1.212-6.263-6.263 6.263-6.263-1.212-1.212-6.263 6.263z"></path>
-            </symbol>
-            <symbol id="icon-del" viewBox="0 0 16 16">
-                <title>del</title>
-                <path class="path1" d="M16 8c0 4.418-3.582 8-8 8s-8-3.582-8-8c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
-                <path class="path2" stroke="#fff" stroke-width="1.1429" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M5.143 5.143l5.714 5.714"></path>
-                <path class="path3" stroke="#fff" stroke-width="1.1429" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M10.857 5.143l-5.714 5.714"></path>
-            </symbol>
-            <symbol id="icon-look" viewBox="0 0 21 16">
-                <title>look</title>
-                <path class="path1" d="M0 8c1.315 3.843 5.267 7 10.667 7s9.339-3.134 10.667-7c-1.305-3.855-5.267-7-10.667-7s-9.344 3.128-10.667 7z"></path>
-                <path class="path2" fill="#f6f7f9" d="M10.667 12c2.356 0 4.267-1.791 4.267-4s-1.91-4-4.267-4c-2.356 0-4.267 1.791-4.267 4s1.91 4 4.267 4z"></path>
-                <path class="path3" d="M16.926 4.934c0 1.621-1.401 2.934-3.13 2.934s-3.13-1.314-3.13-2.934c0-1.621 1.401-2.934 3.13-2.934s3.13 1.314 3.13 2.934z"></path>
-            </symbol>
-            <symbol id="icon-nolook" viewBox="0 0 21 16">
-                <title>nolook</title>
-                <path class="path1" d="M3.378 12.632c-1.608-1.237-2.773-2.862-3.378-4.632 1.323-3.872 5.267-7 10.667-7 1.342 0 2.595 0.194 3.741 0.545l-2.599 2.599c-0.363-0.094-0.746-0.145-1.141-0.145-2.356 0-4.267 1.791-4.267 4 0 0.461 0.083 0.904 0.236 1.316l-3.002 3.002c-0.098 0.098-0.183 0.203-0.256 0.313zM7.104 14.506c1.097 0.319 2.29 0.494 3.563 0.494 5.4 0 9.339-3.134 10.667-7-0.586-1.731-1.708-3.319-3.256-4.544-0.080 0.129-0.176 0.252-0.288 0.364l-3.034 3.034c0.116 0.363 0.178 0.748 0.178 1.146 0 2.209-1.91 4-4.267 4-0.329 0-0.649-0.035-0.956-0.101l-2.607 2.607z"></path>
-                <path class="path2" d="M17.8 1.13c0.312 0.312 0.312 0.819 0 1.131l-13.011 13.011c-0.312 0.312-0.819 0.312-1.131 0s-0.312-0.819 0-1.131l13.011-13.011c0.312-0.312 0.819-0.312 1.131 0z"></path>
-            </symbol>
-            <symbol id="icon-password" viewBox="0 0 16 16">
-                <title>password</title>
-                <path class="path1" d="M11.557 4.482c-0.476-0.476-0.476-1.249 0-1.725s1.248-0.476 1.725 0c0.476 0.476 0.476 1.248 0 1.725s-1.249 0.476-1.725 0zM14.681 1.322c-1.759-1.759-4.61-1.759-6.369 0-1.315 1.315-1.646 3.241-0.995 4.864-0.031 0.020-0.062 0.042-0.089 0.070l-6.875 6.875c-0.195 0.195-0.354 0.579-0.354 0.854v1.519c0 0.275 0.225 0.5 0.5 0.5l1.522-0.003c0.275-0 0.5-0.226 0.5-0.501v-1.463c0-0.275 0.225-0.5 0.5-0.5h1.463c0.275 0 0.501-0.225 0.501-0.5l0.002-1.467c0-0.275 0.226-0.5 0.501-0.5h1.463c0.275 0 0.66-0.159 0.854-0.354l1.94-1.941c0.027-0.027 0.050-0.057 0.069-0.089 1.623 0.651 3.549 0.32 4.864-0.995 1.759-1.759 1.759-4.611 0-6.369z"></path>
-            </symbol>
-            <symbol id="icon-reload" viewBox="0 0 17 16">
-                <title>reload</title>
-                <path class="path1" fill="none" stroke="#c0c5cc" stroke-width="1.5" stroke-miterlimit="4" stroke-linecap="butt" stroke-linejoin="miter" d="M8 1c-3.866 0-7 3.134-7 7s3.134 7 7 7c3.866 0 7-3.134 7-7"></path>
-                <path class="path2" fill="#c0c5cc" d="M15.018 5l1.96 3h-3.956z"></path>
-            </symbol>
-            <symbol id="icon-user" viewBox="0 0 14 16">
-                <title>user</title>
-                <path class="path1" d="M13.474 15.158c0 0.233-0.189 0.421-0.421 0.421s-0.421-0.189-0.421-0.421c0-0.233 0.189-0.421 0.421-0.421s0.421 0.189 0.421 0.421z"></path>
-                <path class="path2" d="M3.368 15.158c0 0.233-0.189 0.421-0.421 0.421s-0.421-0.189-0.421-0.421c0-0.233 0.189-0.421 0.421-0.421s0.421 0.189 0.421 0.421z"></path>
-                <path class="path3" d="M9.394 10.049c-0.099-0.032-0.731-0.316-0.336-1.515h-0.006c1.026-1.058 1.812-2.76 1.812-4.436 0-2.58-1.713-3.931-3.704-3.931-1.994 0-3.697 1.35-3.697 3.931 0 1.681 0.779 3.39 1.813 4.449 0.403 1.055-0.318 1.447-0.467 1.502-2.086 0.756-4.808 2.13-4.808 3.487v0.51c0 1.85 3.86 1.859 7.178 1.859 3.325 0 7.138-0.009 7.138-1.859v-0.51c0-1.399-2.734-2.761-4.922-3.487z"></path>
-            </symbol>
-            <symbol id="icon-code" viewBox="0 0 32 32">
-                <title>icon-code</title>
-                <path class="path1" fill="#999" d="M2.667 16c0-5.155 4.167-9.333 9.327-9.333h8.013c5.151 0 9.327 4.189 9.327 9.333 0 5.155-4.167 9.333-9.327 9.333h-8.013c-5.151 0-9.327-4.189-9.327-9.333zM13.794 20.421c0.391 0.391 1.024 0.391 1.414 0l6.474-6.474c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.74 5.794c0 0-2.435-2.435-2.435-2.435-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414l3.115 3.115z"></path>
-            </symbol>
-        </defs>
-    </svg>
+<!--[if lte IE 7]>
+<style type="text/css">
+    #errorie {position: fixed; top: 0; z-index: 100000; height: 30px; background: #FCF8E3;}
+    #errorie div {width: 900px; margin: 0 auto; line-height: 30px; color: orange; font-size: 14px; text-align: center;}
+    #errorie div a {color: #459f79;font-size: 14px;}
+    #errorie div a:hover {text-decoration: underline;}
+</style>
+<div id="errorie"><div>您还在使用老掉牙的IE，请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
+<![endif]-->
+<div class="container">
+    <div class="main_box">
+        <form id="registerform" action="/index/registerjson" method="post">
+            <br>
+            <p class="text-center logo"><img src="/static/images/logo5.png"></p>
+            <br>
+            <br>
 
+            <div class="form-group" style="text-align: center;color: red;font-size: 24px">
+                <span>{{$message}}</span>
+            </div>
+
+            <br>
+            <div class="text-center">
+                <button type="button" class="btn btn-success btn-lg"><a href="/login">现在登录</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-default btn-lg"><a href="/index/register">继续注册</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div class="text-center">
+                <hr>
+                2017－2020 <a href="">强势文化传播集团有限公司</a><br>
+            </div>
+        </form>
+    </div>
 </div>
-<section class="wrap" style="height: 669px">
-    <section class="logo"></section>
-        <section class="login-wrap input-list">
-            <ul>
-                <li>
-                    <span>恭喜你，注册成功！</span>
-                    {{--{{$message}}--}}
-                </li>
-            </ul>
-            <br>
-            <br>
-            <p style="text-align: center"><a class="blue" href="/login">现在登录</a></p>
-        </section>
-</section>
 </body>
 </html>

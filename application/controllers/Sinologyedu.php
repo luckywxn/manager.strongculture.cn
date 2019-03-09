@@ -1,5 +1,5 @@
 <?php
-//header("Content-Type: text/html; charset=gb2312");
+header("Content-Type: text/html; charset=gb2312");
 /**
  * Created by PhpStorm.
  * User: lucky
@@ -19,40 +19,15 @@ class SinologyeduController extends Yaf_Controller_Abstract
     }
 
     /*
-     * 课程汇总表
-     */
-    public function listAction(){
-        $params = array();
-        $this->getView()->make('sinologyedu.list',$params);
-    }
-
-    /*
-     * 四书列表
-     */
-    public function sishulistAction(){
-        $params = array();
-        $this->getView()->make('sinologyedu.sishulist',$params);
-    }
-
-    /*
-     * 五经列表
-     */
-    public function wujinglistAction(){
-        $params = array();
-        $this->getView()->make('sinologyedu.wujinglist',$params);
-    }
-
-    /*
-     *各书详细信息
+     *国学详情
      */
     public function SinologylistAction()
     {
-        header("Content-Type: text/html; charset=gb2312");
         $request = $this->getRequest();
         $subject = $request->getParam('subject', 1);
         $content = @file("upload/Sinology/$subject.txt");
 
-        echo "<div class='bjui-pageHeader ' style='background-color:#c1b096;position:relative; overflow:auto'>";
+        echo "<div class='bjui-pageHeader ' style='background-color:#fff;height:850px;position:relative; overflow:auto'>";
 
         if ($content)
             foreach ($content as $item) {

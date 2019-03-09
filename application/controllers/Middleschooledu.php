@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=gb2312");
 /**
  * Created by PhpStorm.
  * User: lucky
@@ -17,31 +18,8 @@ class MiddleschooleduController  extends Yaf_Controller_Abstract
         # parent::init();
     }
 
-    /*
-    *初中年级列表
-    */
-    public function listAction(){
-        $params = array();
-        $this->getView()->make('middleschooledu.list',$params);
-    }
 
-    /*
-     * 科目汇总表
-     */
-    public function subjectlistAction(){
-        $request = $this->getRequest();
-        $grade = $request->getParam('grade', 1);
-        $params = array(
-            'grade'=>$grade
-        );
-        $this->getView()->make('middleschooledu.subjectlist',$params);
-    }
-
-    /*
-     * 书籍详细信息
-     */
     public function middleschoollistAction(){
-        header("Content-Type: text/html; charset=gb2312");
         $request = $this->getRequest();
         $id = $request->getParam('grade', 1);
         switch($id){
@@ -103,24 +81,19 @@ class MiddleschooleduController  extends Yaf_Controller_Abstract
             case '3.2.9':$grade="grade3";break;
         }
 
-        $content = file("upload/middleschool/$grade/$id.txt");
-        $params = array(
-            'grade'=>$grade,
-            'id'=>$id,
-            'content'=>$content
-        );
+        $content = @file("upload/middleschool/$grade/$id.txt");
 
-        echo "<div class='bjui-pageHeader ' style='background-color:#fff;position:relative; overflow:auto'>
+        echo "<div class='bjui-pageHeader ' style='background-color:#fff;height:550px;position:relative; overflow:auto'>
                 <br>
-                <p style='text-align:center'><img src='../../../upload/middleschool/$grade/$id.jpg'></p>
+                <p style='text-align:center'><img src='upload/middleschool/$grade/$id.jpg'></p>
                 <br><br>";
 
+        if($content)
         foreach ($content as $item) {
             echo $item."<br>";
         }
 
         echo "</div>";
-
     }
 
 

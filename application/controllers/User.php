@@ -6,7 +6,6 @@
  * Time: 17:09
  */
 
-
 class UserController extends Yaf_Controller_Abstract
 {
     /**
@@ -20,55 +19,80 @@ class UserController extends Yaf_Controller_Abstract
     }
 
     /**
-     * 用户中心
+     * 系统管理-用户列表
      */
-    public function usercenterAction()
+    public function listAction()
     {
-        $params = array();
-        $this->getView()->make('user.usercenter',$params);
+        $request = $this->getRequest();
+        $search = array(
+            'realname' =>  $request->getPost('realname',''),
+            'pageSize' =>COMMON::PR(),
+            'pageCurrent' =>COMMON::P()
+        );
+
+        $U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
+        $params =  $U->getSystemUser($search);
+        $this->getView()->make('user.userlist',$params);
     }
 
+    /**
+     * 查询用户列表
+     */
+    public function userlistJsonAction()
+    {
+        $request = $this->getRequest();
+        $search = array(
+            'username' => $request->getPost('username',''),
+            'realname' => $request->getPost('realname',''),
+            'status' => $request->getPost('bar_status',''),
+            'pageSize' => COMMON::PR(),
+            'pageCurrent' =>COMMON::P()
+        );
+
+        $U = new UserModel(Yaf_Registry::get("db"),Yaf_Registry::get('mc'));
+        $list =  $U->getSystemUser($search);
+
+        echo json_encode($list);
+    }
+
+
     /***
-     * 个人资料
+     * 添加/修改用户
      */
     public function usereditAction()
     {
-        $user = Yaf_Registry::get(SSN_VAR);
+        $request = $this->getRequest();
+        $id = $request->getParam('id',0);
         $U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $A = new AttachmentModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $user = $U ->getUserById($user['sysno']);
-        $user['role'] = $U->getRoleByUserId($user['sysno']);
-        $attach = $A->getAttachByMAS('user','userphoto',$user['sysno']);
-        $user['photourl'] = $attach[0]['path'].'/'.$attach[0]['name'];
-        $this->getView()->make('user.userinfo',$user);
+
+        if(!$id){
+            $action = "/user/userNewJson/";
+            $params =  array ();
+            $params['userRoles'] = array();
+        } else {
+            $action = "/user/userEditJson/";
+
+            $params = $U->getUserById($id);
+            $params['userRoles'] = $U->getUserPrivilege($id);
+        }
+        $params['id'] =  $id;
+        $params['action'] =  $action;
+
+        $roleprivileges = $U->roleList();
+
+        $params['rolelist'] = $roleprivileges;
+        $params['module'] = $roleprivileges['module'];
+
+        $this->getView()->make('user.useredit',$params);
     }
 
-    /*
-     * 旅游地图
-     */
-    public function travelmapAction(){
-        $params = array();
-        $S = new SystemModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $T = new TravelModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $params['user']  = Yaf_Registry::get(SSN_VAR);
-        $params['navtab']  =  $S->getPrivilegeListByPidUid($params['user']['sysno'],0);
-
-        $params['role'] = $S->getRoleByUserId($params['user']['sysno']);
-        $travelplans =  $T->getTravellist2($params['user']['sysno'],2);
-        $travelhistorys =  $T->getTravellist2($params['user']['sysno'],1);
-        foreach($travelplans as $item){
-            $params['travelplan'][] = $item['placename'];
-        }
-        foreach($travelhistorys as $item){
-            $params['travelhistory'][] = $item['placename'];
-        }
-
-        $this->getView()->make('user.travelmap',$params);
-    }
 
     /***
      * 添加新用户的操作
+     * @author Alan
+     * @time 2016-11-14 11:18:53
      */
+
     public function userNewJsonAction()
     {
         $request = $this->getRequest();
@@ -80,7 +104,6 @@ class UserController extends Yaf_Controller_Abstract
         $input = array(
             'username'      =>  $request->getPost('username',''),
             'userpwd'       =>  $hash,
-            'employee_sysno'=>  $request->getPost('employee_sysno',''),
             'realname'      =>  $request->getPost('realname',''),
             'status'        =>  $request->getPost('status','1'),
             'isdel'         =>  $request->getPost('isdel','0'),
@@ -100,7 +123,6 @@ class UserController extends Yaf_Controller_Abstract
                 COMMON::result(200,'添加成功',$row);
                 break;
         }
-
     }
 
     /**
@@ -118,22 +140,19 @@ class UserController extends Yaf_Controller_Abstract
         }
         $U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
         $password = $request->getPost('userpwd','');
-        $sex = $request->getPost('sex','');
-        $marriage = $request->getPost('marriage','');
-        $sex = ($sex=='男'?0:1);
-        $marriage = ($marriage == '未婚'?0:1);
         if($password == '')
         {
             $input = array(
                 'nickname'    =>  $request->getPost('nickname',''),
+                'username'      =>  $request->getPost('username',''),
                 'realname'      =>  $request->getPost('realname',''),
-                'sex' => $sex,
+                'sex' => $request->getPost('sex',''),
                 'telephone' => $request->getPost('telephone',''),
                 'email' => $request->getPost('email',''),
                 'birthday' => $request->getPost('birthday',''),
                 'nation' => $request->getPost('nation',''),
                 'origin' => $request->getPost('origin',''),
-                'marriage' => $marriage,
+                'marriage' => $request->getPost('marriage',''),
                 'politics' => $request->getPost('politics',''),
                 'education' => $request->getPost('education',''),
                 'major' => $request->getPost('major',''),
@@ -160,13 +179,26 @@ class UserController extends Yaf_Controller_Abstract
 
         if($U->updateUser($id,$input,$privileges)){
             $row = $U->getUserById($id);
-            echo "<script>alert('更新成功');</script>";
-            header("Location: /user/useredit");
-            //COMMON::result(200,'更新成功',$row);
+            COMMON::result(200,'更新成功',$row);
         }else{
-            echo "<script>alert('更新成功');</script>";
-            //COMMON::result(300,'更新失败');
+            COMMON::result(300,'更新失败');
         }
+    }
+
+    public function userDelJsonAction()
+    {
+        $request = $this->getRequest();
+        $id = $request->getPost('sysno',0);
+
+        $U = new UserModel(Yaf_Registry::get("db"),Yaf_Registry::get('mc'));
+        if($U->delUser($id))
+        {
+            $row = $U->getUserById($id);
+            COMMON::result(200,'更新成功',$row);
+        }else{
+            COMMON::result(300,'更新失败');
+        }
+
     }
 
     public function passwordEditJsonAction()
@@ -189,9 +221,7 @@ class UserController extends Yaf_Controller_Abstract
         if(password_verify($oldpassword, $row['userpwd']))
         {
             
-        }
-        else
-        {
+        }else{
             COMMON::result(300,'旧密码错误');
             return;
         }
@@ -214,69 +244,42 @@ class UserController extends Yaf_Controller_Abstract
         }
     }
 
-    public function travelhistoryAction(){
-        $request = $this->getRequest();
-        $params['type']=$request->getparam('type');
-        $user = Yaf_Registry::get(SSN_VAR);
-        $T = new TravelModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $travelhistory = $T->getTravellist($user['sysno'],1);
-        $params['travel'] = $travelhistory['list'];
-        $this->getView()->make('user.travel',$params);
-    }
-
-    public function travelplanAction(){
-        $request = $this->getRequest();
-        $params['type']=$request->getparam('type');
-        $user = Yaf_Registry::get(SSN_VAR);
-        $T = new TravelModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $travelplan = $T->getTravellist($user['sysno'],2);
-        $params['travel'] = $travelplan['list'];
-        $this->getView()->make('user.travel',$params);
-    }
-
-    public function addtraveljsonAction(){
+    public function UserinfoAction(){
         $user  = Yaf_Registry::get(SSN_VAR);
+        $U = new UserModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
+        $user = $U ->getUserById($user['sysno']);
+        $user['role'] = $U->getRoleByUserId($user['sysno']);
+
+        $this->getView()->make('user.userinfo',$user);
+    }
+
+    public function ajaxUploadAction(){
         $request = $this->getRequest();
-        $input = array(
-            'user_sysno'=>$user['sysno'],
-            'placename'  =>  $request->getPost('placename',''),
-            'plantime'       =>  $request->getPost('plantime',''),
-            'memo'     =>  $request->getPost('memo',''),
-            'planstatus'=> $request->getPost('type',''),
-            'created_at'    =>'=NOW()',
-            'updated_at'    =>'=NOW()'
+        $backid=$request->getPost('backid','');
+
+        $result = array(
+            'statusCode'=>'200',
+            'message'=>'上传成功',
+            'backid'=>$backid,
+            'backval'=>''
         );
 
-        $url = "";
-        if($input['type']==1){
-            $url = "Location: /user/travelhistory/type/1";
-        }else{
-            $url = "Location: /user/travelplan/type/2";
+        $path = "upload/user/";
+        $up = new FileUpload;
+        //设置属性(上传的位置， 大小， 类型， 名是是否要随机生成)
+        $up->set("path", $path);
+        $up->set("maxsize", 2000000);
+        $up->set("allowtype", array("gif", "png", "jpg", "jpeg"));
+        $up->set("israndname", true);
+
+        //使用对象中的upload方法， 就可以上传文件， 方法需要传一个上传表单的名子 pic, 如果成功返回true, 失败返回false
+        if ($up->upload('file')) {
+            $result['backval'] = $path . $up->getFileName();
+        } else {
+            $result['statusCode']='300';
+            $result['message']='上传失败';
         }
-
-        $T = new TravelModel(Yaf_Registry::get('db'),Yaf_Registry::get('mc'));
-        if($id = $T->addtravel($input)){
-            echo "<script>alert('更新成功');</script>";
-            header($url);
-        }else{
-            echo "<script>alert('更新成功');</script>";
-        }
-    }
-
-    public function studyAction(){
-        $user = Yaf_Registry::get(SSN_VAR);
-        $S = new StudyModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $study = $S->getStudylist($user['sysno']);
-        $params['study'] = $study['list'];
-        $this->getView()->make('user.study',$params);
-    }
-
-    public function investAction(){
-        $user = Yaf_Registry::get(SSN_VAR);
-        $I = new InvestModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-        $invest = $I->getInvestlist($user['sysno']);
-        $params['invest'] = $invest['list'];
-        $this->getView()->make('user.invest',$params);
+        echo json_encode($result);
     }
 
 }

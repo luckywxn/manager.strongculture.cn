@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=gb2312");
 /**
  * Created by PhpStorm.
  * User: lucky
@@ -17,28 +18,7 @@ class HighschooleduController  extends Yaf_Controller_Abstract
         # parent::init();
     }
 
-    /*
-    *高中年级列表
-    */
-    public function listAction(){
-        $params = array();
-        $this->getView()->make('highschooledu.list',$params);
-    }
-
-    /*
-     * 科目汇总表
-     */
-    public function subjectlistAction(){
-        $request = $this->getRequest();
-        $grade = $request->getParam('grade', 1);
-        $params = array(
-            'grade'=>$grade
-        );
-        $this->getView()->make('highschooledu.subjectlist',$params);
-    }
-
     public function highschoollistAction(){
-        header("Content-Type: text/html; charset=gb2312");
         $request = $this->getRequest();
         $id = $request->getParam('grade', 1);
         switch($id){
@@ -100,24 +80,35 @@ class HighschooleduController  extends Yaf_Controller_Abstract
             case '3.2.9':$grade="grade3";break;
         }
 
-        $content = file("upload/highschool/$grade/$id.txt");
-        $params = array(
-            'grade'=>$grade,
-            'id'=>$id,
-            'content'=>$content
-        );
+        $content = @file("upload/highschool/$grade/$id.txt");
 
-        echo "<div class='bjui-pageHeader ' style='background-color:#fff;position:relative; overflow:auto'>
+        echo "<div class='bjui-pageHeader ' style='background-color:#fff;height:550px;position:relative; overflow:auto'>
                 <br>
-                <p style='text-align:center'><img src='../../../upload/highschool/$grade/$id.jpg'></p>
+                <p style='text-align:center'><img src='upload/highschool/$grade/$id.jpg'></p>
                 <br><br>";
 
+        if($content)
         foreach ($content as $item) {
             echo $item."<br>";
         }
 
         echo "</div>";
 
+    }
+
+    public function meiwenListAction(){
+        $request = $this->getRequest();
+        $subject = $request->getParam('subject', 1);
+        $content = @file("upload/highschool/$subject.txt");
+
+        echo "<div class='bjui-pageHeader ' style='background-color:#fff;height:550px;position:relative; overflow:auto'>";
+
+        if ($content)
+            foreach ($content as $item) {
+                echo $item . "<br>";
+            }
+
+        echo "</div>";
     }
 
 

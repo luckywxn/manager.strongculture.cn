@@ -1,0 +1,1270 @@
+================================================================================
+time: 2016-12-12 18:11:11
+from: 127.0.0.1
+page: /settlement/datail
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT count(`sysno`) FROM hengyang_base_settlement where isdel = 0 and 
+
+================================================================================
+time: 2016-12-13 10:50:20
+from: 127.0.0.1
+page: /retank/listJson
+error: 42S22：["42S22",1054,"Unknown column 'sr.contractstatus' in 'where clause'"]
+param: SELECT Count(*) 
+       FROM hengyang_doc_stock_retank as sr 
+       LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+       LEFT JOIN hengyang_storage_stock AS ss ON ss.stockno = sr.stockretankno
+       LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+       LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno 
+       WHERE sr.`status` = 1 AND sr.isdel = 0  AND  sr.contractstatus = 2
+
+================================================================================
+time: 2016-12-13 10:52:57
+from: 127.0.0.1
+page: /retank/listJson
+error: 42S22：["42S22",1054,"Unknown column 'sr.contractstatus' in 'where clause'"]
+param: SELECT Count(*) 
+       FROM hengyang_doc_stock_retank as sr 
+       LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+       LEFT JOIN hengyang_storage_stock AS ss ON ss.stockno = sr.stockretankno
+       LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+       LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno 
+       WHERE sr.`status` = 1 AND sr.isdel = 0  AND  sr.stockretankno LIKE 'R1481595945802244802' AND  sr.stockretankdate = '2016-12-13' AND  sr.contractstatus = 0
+
+================================================================================
+time: 2016-12-13 10:53:04
+from: 127.0.0.1
+page: /retank/listJson
+error: 42S22：["42S22",1054,"Unknown column 'sr.contractstatus' in 'where clause'"]
+param: SELECT Count(*) 
+       FROM hengyang_doc_stock_retank as sr 
+       LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+       LEFT JOIN hengyang_storage_stock AS ss ON ss.stockno = sr.stockretankno
+       LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+       LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno 
+       WHERE sr.`status` = 1 AND sr.isdel = 0  AND  sr.stockretankno LIKE 'R1481595945802244802' AND  sr.stockretankdate = '2016-12-12' AND  sr.contractstatus = 0
+
+================================================================================
+time: 2016-12-13 10:54:51
+from: 127.0.0.1
+page: /retank/listJson
+error: 42S22：["42S22",1054,"Unknown column 'sr.contractstatus' in 'where clause'"]
+param: SELECT Count(*) 
+       FROM hengyang_doc_stock_retank as sr 
+       LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+       LEFT JOIN hengyang_storage_stock AS ss ON ss.stockno = sr.stockretankno
+       LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+       LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno 
+       WHERE sr.`status` = 1 AND sr.isdel = 0  AND  sr.stockretankno LIKE 'R1481595945802244802' AND  sr.contractstatus = 2
+
+================================================================================
+time: 2016-12-13 10:54:58
+from: 127.0.0.1
+page: /retank/listJson
+error: 42S22：["42S22",1054,"Unknown column 'sr.contractstatus' in 'where clause'"]
+param: SELECT Count(*) 
+       FROM hengyang_doc_stock_retank as sr 
+       LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+       LEFT JOIN hengyang_storage_stock AS ss ON ss.stockno = sr.stockretankno
+       LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+       LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno 
+       WHERE sr.`status` = 1 AND sr.isdel = 0  AND  sr.contractstatus = 2
+
+================================================================================
+time: 2016-12-13 16:44:05
+from: 127.0.0.1
+page: /storagecost/datail
+error: 42S22：["42S22",1054,"Unknown column 'cost.storagecostname' in 'where clause'"]
+param: SELECT count(cost.`sysno`) FROM `hengyang_base_storagecost` as cost
+                LEFT JOIN `hengyang_base_storagetank_category` as tank on cost.`storagetank_category_sysno` =tank.`sysno`
+                LEFT JOIN `hengyang_base_goods` as goods on cost.`goods_sysno` = goods.`sysno`
+                LEFT JOIN `hengyang_base_unit` AS bu ON bu.`sysno`=cost.`unit`
+                where cost.isdel = 0  and  `cost.storagecostname` LIKE '%小五测试%' 
+
+================================================================================
+time: 2016-12-13 16:45:29
+from: 127.0.0.1
+page: /storagecost/datail
+error: 42S22：["42S22",1054,"Unknown column 'cost.storagecostname' in 'where clause'"]
+param: SELECT count(cost.`sysno`) FROM `hengyang_base_storagecost` as cost
+                LEFT JOIN `hengyang_base_storagetank_category` as tank on cost.`storagetank_category_sysno` =tank.`sysno`
+                LEFT JOIN `hengyang_base_goods` as goods on cost.`goods_sysno` = goods.`sysno`
+                LEFT JOIN `hengyang_base_unit` AS bu ON bu.`sysno`=cost.`unit`
+                where cost.isdel = 0  and  `cost.storagecostname` LIKE '%小五测试%' 
+
+================================================================================
+time: 2016-12-13 16:51:48
+from: 127.0.0.1
+page: /storagecost/datail
+error: 42S22：["42S22",1054,"Unknown column 'cost.storagecostno' in 'where clause'"]
+param: SELECT count(cost.`sysno`) FROM `hengyang_base_storagecost` as cost
+                LEFT JOIN `hengyang_base_storagetank_category` as tank on cost.`storagetank_category_sysno` =tank.`sysno`
+                LEFT JOIN `hengyang_base_goods` as goods on cost.`goods_sysno` = goods.`sysno`
+                LEFT JOIN `hengyang_base_unit` AS bu ON bu.`sysno`=cost.`unit`
+                where cost.isdel = 0  AND  `cost.storagecostno` LIKE '%309821%' 
+
+================================================================================
+time: 2016-12-13 17:19:37
+from: 127.0.0.1
+page: /storagecost/datail
+error: 42S22：["42S22",1054,"Unknown column 'Array' in 'where clause'"]
+param: SELECT count(cost.`sysno`) FROM `hengyang_base_storagecost` as cost
+                LEFT JOIN `hengyang_base_storagetank_category` as tank on cost.`storagetank_category_sysno` =tank.`sysno`
+                LEFT JOIN `hengyang_base_goods` as goods on cost.`goods_sysno` = goods.`sysno`
+                LEFT JOIN `hengyang_base_unit` AS bu ON bu.`sysno`=cost.`unit`
+                 WHERE  cost.`storagecosttype` = Array  AND  cost.`status` = 1  AND  cost.`isdel` = 0 
+
+================================================================================
+time: 2016-12-13 17:37:52
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 29' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 23 and contract_sysno =  and goods_sysno = 29  
+
+================================================================================
+time: 2016-12-13 17:40:33
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 29' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 23 and contract_sysno =  and goods_sysno = 29  
+
+================================================================================
+time: 2016-12-13 17:41:39
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 35' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 24 and contract_sysno =  and goods_sysno = 35  
+
+================================================================================
+time: 2016-12-13 17:48:53
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 35' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 24 and contract_sysno =  and goods_sysno = 35  
+
+================================================================================
+time: 2016-12-13 17:52:32
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 35' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 24 and contract_sysno =  and goods_sysno = 35  
+
+================================================================================
+time: 2016-12-13 18:02:19
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 35' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 24 and contract_sysno =  and goods_sysno = 35  
+
+================================================================================
+time: 2016-12-13 18:02:29
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 35' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 24 and contract_sysno =  and goods_sysno = 35  
+
+================================================================================
+time: 2016-12-13 18:08:40
+from: 127.0.0.1
+page: /stocktrans/editJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and goods_sysno = 29' at line 1"]
+param: select goodsqty from hengyang_doc_contract_goods where goods_quality_sysno = 25 and contract_sysno =  and goods_sysno = 29  
+
+================================================================================
+time: 2016-12-13 20:08:55
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481630935440053249',`storagecostname`='测试1.1',storagecosttype=1,`goods_sysno`='煤油',storagetank_category_sysno=28,unit_sysno=3,startingprice=100,overdueprice=20,minstock=20,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:26:08
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481631968696152153',`storagecostname`='测试1.1',storagecosttype=1,`goods_sysno`='硝酸',storagetank_category_sysno=28,unit_sysno=3,startingprice=200,overdueprice=20,minstock=50,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:28:30
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481632110423258355',`storagecostname`='测试1.1',storagecosttype=1,`goods_sysno`='合成氨',storagetank_category_sysno=28,unit_sysno=3,startingprice=300,overdueprice=20,minstock=10,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:32:07
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481632327269661226',`storagecostname`='规范VS的',storagecosttype=1,`goods_sysno`='石蜡油',storagetank_category_sysno=28,unit_sysno=3,startingprice=200,overdueprice=10,minstock=20,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:40:39
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481632839624966593',`storagecostname`='很过分的事',storagecosttype=1,goods_sysno=28,storagetank_category_sysno=27,unit_sysno=3,startingprice=4548,overdueprice=52,minstock=24,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:50:21
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481633421840267254',`storagecostname`='twht',storagecosttype=1,`goods_sysno`='',storagetank_category_sysno=27,unit_sysno=3,startingprice=274,overdueprice=27,minstock=42,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:51:40
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481633500378759545',`storagecostname`='rtegr',storagecosttype=1,`goods_sysno`='煤油',storagetank_category_sysno=27,unit_sysno=3,startingprice=75,overdueprice=5,minstock=7,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:54:12
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481633652196443648',`storagecostname`='the',storagecosttype=1,`goods_sysno`='汽油',storagetank_category_sysno=26,unit_sysno=3,startingprice=27,overdueprice=2,minstock=47,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-13 20:56:32
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481633792744482968',`storagecostname`='htrestg',storagecosttype=1,`goods_sysno`='煤油',storagetank_category_sysno=27,unit_sysno=3,startingprice=7427,overdueprice=42,minstock=427,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 08:58:44
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677124068033181',`storagecostname`='rtgwegr',storagecosttype=1,`goods_sysno`='煤油',storagetank_category_sysno=27,unit_sysno=3,startingprice=52,overdueprice=21,minstock=10,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 08:59:18
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677158146982373',`storagecostname`='htsd',storagecosttype=1,`goods_sysno`='润滑油',storagetank_category_sysno=28,unit_sysno=3,startingprice=21,overdueprice=52,minstock=51,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:01:05
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677265107100578',`storagecostname`='fasf',storagecosttype=1,goods_sysno=26,storagetank_category_sysno=27,unit_sysno=3,startingprice=56,overdueprice=54,minstock=541,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:02:55
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677375293402849',`storagecostname`='方式',storagecosttype=1,goods_sysno=34,storagetank_category_sysno=27,unit_sysno=16,startingprice=152,overdueprice=10,minstock=20,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:03:03
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677383710883177',`storagecostname`='方式',storagecosttype=1,goods_sysno=34,storagetank_category_sysno=27,unit_sysno=16,startingprice=152,overdueprice=10,minstock=20,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:04:13
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677453295863987',`storagecostname`='方式',storagecosttype=1,goods_sysno=31,storagetank_category_sysno=28,unit_sysno=16,startingprice=2000,overdueprice=112,minstock=212,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:07:25
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677645096834331',`storagecostname`='测试1.1',storagecosttype=1,`goods_sysno`='',storagetank_category_sysno=25,unit_sysno=16,startingprice=200,overdueprice=100,minstock=2000,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-14 09:08:24
+from: 127.0.0.1
+page: /storagecost/addstoragecost/
+error: 42S22：["42S22",1054,"Unknown column 'unit_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_base_storagecost` SET `storagecostno`='C1481677704965258995',`storagecostname`='测试1.1',storagecosttype=1,goods_sysno=39,storagetank_category_sysno=25,unit_sysno=3,startingprice=522,overdueprice=200,minstock=100,status=1,created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2016-12-15 13:09:34
+from: 127.0.0.1
+page: /system/privilegetree?_=1481773368466
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and parentsysnotype = 1' at line 1"]
+param: select * from hengyang_system_privilege and parentsysnotype = 1 
+
+================================================================================
+time: 2016-12-15 13:11:08
+from: 127.0.0.1
+page: /system/privilegetree?_=1481773368467
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and parentsysnotype = 1' at line 1"]
+param: select * from hengyang_system_privilege where  and parentsysnotype = 1 
+
+================================================================================
+time: 2016-12-15 13:13:21
+from: 127.0.0.1
+page: /system/privilegetree?_=1481773368471
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and parentsysnotype = 1' at line 1"]
+param: select * from hengyang_system_privilege where  and parentsysnotype = 1 
+
+================================================================================
+time: 2016-12-15 17:12:06
+from: 127.0.0.1
+page: /stockout/edit/type/1/id?_=1481792666650
+error: 42S22：["42S22",1054,"Unknown column 'hengyang_case_company' in 'where clause'"]
+param: SELECT companyname FROM hengyang_base_company WHERE `status` = 1 AND isdel = 0 AND  `hengyang_case_company` = 1
+
+================================================================================
+time: 2016-12-15 17:12:09
+from: 127.0.0.1
+page: /stockout/edit/type/2/id?_=1481792666653
+error: 42S22：["42S22",1054,"Unknown column 'hengyang_case_company' in 'where clause'"]
+param: SELECT companyname FROM hengyang_base_company WHERE `status` = 1 AND isdel = 0 AND  `hengyang_case_company` = 1
+
+================================================================================
+time: 2016-12-15 17:59:37
+from: 127.0.0.1
+page: /supplier/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'bar_shipno' in 'where clause'"]
+param: SELECT COUNT(*)  from hengyang_base_ship  WHERE  bar_shipno = 10001 OR  shipname LIKE '%干撒%'  
+
+================================================================================
+time: 2016-12-15 18:00:36
+from: 127.0.0.1
+page: /supplier/shipNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: select * from hengyang_base_ship  WHERE  shipno = 10001 OR  shipname LIKE '%格式%'   order by  created_at desc  LIMIT 0, 
+
+================================================================================
+time: 2016-12-15 18:01:54
+from: 127.0.0.1
+page: /supplier/shipNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-20, 20' at line 1"]
+param: select * from hengyang_base_ship  WHERE  shipno = 10001 OR  shipname LIKE '%好热%'   order by  created_at desc  LIMIT -20, 20
+
+================================================================================
+time: 2016-12-16 13:29:36
+from: 127.0.0.1
+page: /customer/customergoodslistJson
+error: 42000：["42000",1065,"Query was empty"]
+param: n/a
+
+================================================================================
+time: 2016-12-16 13:29:57
+from: 127.0.0.1
+page: /customer/customergoodslistJson
+error: 42000：["42000",1065,"Query was empty"]
+param: n/a
+
+================================================================================
+time: 2016-12-16 13:30:04
+from: 127.0.0.1
+page: /customer/customergoodslistJson
+error: 42000：["42000",1065,"Query was empty"]
+param: n/a
+
+================================================================================
+time: 2016-12-16 14:09:03
+from: 127.0.0.1
+page: /customer/customergoodslistJson
+error: 42S22：["42S22",1054,"Unknown column 'c.isdel' in 'where clause'"]
+param: SELECT cu.customername,dc.contractno,bg.sysno,bg.goodsno,bg.goodsname
+			FROM hengyang_customer cu 
+			LEFT JOIN hengyang_doc_contract dc ON dc.customer_id=cu.sysno
+			LEFT JOIN hengyang_doc_contract_goods cg ON cg.contract_sysno=dc.sysno
+			LEFT JOIN hengyang_base_goods bg ON bg.sysno=cg.goods_sysno WHERE dc.contractstatus=6 AND c.isdel = 0  AND dc.`customer_id` = 53  AND cg.`contract_sysno` = 72 
+
+================================================================================
+time: 2016-12-17 10:43:00
+from: 127.0.0.1
+page: /booktrans/edit?_=1481937235685
+error: 42S22：["42S22",1054,"Unknown column 'cc.contractstatus' in 'where clause'"]
+param: SELECT COUNT(*)  FROM `hengyang_customer_contacts` cc left join `hengyang_customer` cu on (cc.`customer_sysno`=cu.`sysno`) where cu.isdel=0 and cc.isdel=0 AND  cu.`status`='1' AND  cc.`contractstatus`=6 AND  cc.`contractenddate`>='NOW()' 
+
+================================================================================
+time: 2016-12-17 17:41:47
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'A001' in 'where clause'"]
+param:  SELECT * FROM hengyang_base_goods WHERE  `goodsno` = A001-006-003 AND  `status` = 1  AND  `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:43:12
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'A001' in 'where clause'"]
+param:  SELECT * FROM hengyang_base_goods WHERE  `goodsno` = A001-006-003 AND  `status` = 1  AND  `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:44:20
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''A001-006-003'' AND  `status` = 1  AND  `isdel` = 0' at line 1"]
+param:  SELECT * FROM hengyang_base_goods WHERE  `goodsno` = 'A001-006-003'' AND  `status` = 1  AND  `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:44:31
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''A001-006-003'' AND  `status` = 1  AND  `isdel` = 0' at line 1"]
+param:  SELECT * FROM hengyang_base_goods WHERE  `goodsno` = 'A001-006-003'' AND  `status` = 1  AND  `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:46:18
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''A001-006-003'' AND  `status` = 1  AND  `isdel` = 0' at line 1"]
+param:  SELECT * FROM hengyang_base_goods WHERE  `goodsno` = 'A001-006-003'' AND  `status` = 1  AND  `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:47:15
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''A001-006-003'' AND   `status` = 1  AND   `isdel` = 0' at line 1"]
+param:  SELECT * FROM hengyang_base_goods WHERE   `goodsno` = 'A001-006-003'' AND   `status` = 1  AND   `isdel` = 0 
+
+================================================================================
+time: 2016-12-17 17:49:06
+from: 127.0.0.1
+page: /goods/basisNewJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''A001-006-003''' at line 1"]
+param:  SELECT * FROM hengyang_base_goods WHERE   `goodsno` = 'A001-006-003''
+
+================================================================================
+time: 2016-12-19 13:46:15
+from: 127.0.0.1
+page: /department/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIKE '%775863527'%  AND  d.`isdel`='0'' at line 1"]
+param: SELECT COUNT(*)  FROM `hengyang_system_department` AS d WHERE  d.`departmentno`= LIKE '%775863527'%  AND  d.`isdel`='0' 
+
+================================================================================
+time: 2016-12-19 13:46:32
+from: 127.0.0.1
+page: /department/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIKE '%775863527'%  AND  d.`isdel`='0'' at line 1"]
+param: SELECT COUNT(*)  FROM `hengyang_system_department` AS d WHERE  d.`departmentno`= LIKE '%775863527'%  AND  d.`isdel`='0' 
+
+================================================================================
+time: 2016-12-19 13:46:36
+from: 127.0.0.1
+page: /department/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIKE '%775863527'%  AND  d.`isdel`='0'' at line 1"]
+param: SELECT COUNT(*)  FROM `hengyang_system_department` AS d WHERE  d.`departmentno`= LIKE '%775863527'%  AND  d.`isdel`='0' 
+
+================================================================================
+time: 2016-12-20 09:16:36
+from: 127.0.0.1
+page: /retank/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by stockretankdate asc' at line 7"]
+param: SELECT srd.*,SUM(srd.stockretankqty) as stockretankqty,sr.*,ss.customername,ss.goodsname,bu.unitname,ss.customername,ss.goods_sysno,bs.storagetankname
+               FROM hengyang_doc_stock_retank AS sr 
+               LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+               LEFT JOIN hengyang_storage_stock as ss ON ss.sysno = srd.out_stock_sysno 
+               LEFT JOIN hengyang_base_storagetank as bs ON bs.sysno = ss.storagetank_sysno
+               LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+               LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno WHERE sr.`status` = 1 AND sr.isdel = 0  GROUP BY sr.stockretankno  ORDER BY sr.`sysno` DESC order by stockretankdate asc
+
+================================================================================
+time: 2016-12-20 09:16:41
+from: 127.0.0.1
+page: /retank/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by stockretankdate desc' at line 7"]
+param: SELECT srd.*,SUM(srd.stockretankqty) as stockretankqty,sr.*,ss.customername,ss.goodsname,bu.unitname,ss.customername,ss.goods_sysno,bs.storagetankname
+               FROM hengyang_doc_stock_retank AS sr 
+               LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+               LEFT JOIN hengyang_storage_stock as ss ON ss.sysno = srd.out_stock_sysno 
+               LEFT JOIN hengyang_base_storagetank as bs ON bs.sysno = ss.storagetank_sysno
+               LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+               LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno WHERE sr.`status` = 1 AND sr.isdel = 0  GROUP BY sr.stockretankno  ORDER BY sr.`sysno` DESC order by stockretankdate desc
+
+================================================================================
+time: 2016-12-20 09:16:44
+from: 127.0.0.1
+page: /retank/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by stockretankdate desc,stockretankno asc' at line 7"]
+param: SELECT srd.*,SUM(srd.stockretankqty) as stockretankqty,sr.*,ss.customername,ss.goodsname,bu.unitname,ss.customername,ss.goods_sysno,bs.storagetankname
+               FROM hengyang_doc_stock_retank AS sr 
+               LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+               LEFT JOIN hengyang_storage_stock as ss ON ss.sysno = srd.out_stock_sysno 
+               LEFT JOIN hengyang_base_storagetank as bs ON bs.sysno = ss.storagetank_sysno
+               LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+               LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno WHERE sr.`status` = 1 AND sr.isdel = 0  GROUP BY sr.stockretankno  ORDER BY sr.`sysno` DESC order by stockretankdate desc,stockretankno asc
+
+================================================================================
+time: 2016-12-20 09:16:47
+from: 127.0.0.1
+page: /retank/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by stockretankdate asc,stockretankno asc' at line 7"]
+param: SELECT srd.*,SUM(srd.stockretankqty) as stockretankqty,sr.*,ss.customername,ss.goodsname,bu.unitname,ss.customername,ss.goods_sysno,bs.storagetankname
+               FROM hengyang_doc_stock_retank AS sr 
+               LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+               LEFT JOIN hengyang_storage_stock as ss ON ss.sysno = srd.out_stock_sysno 
+               LEFT JOIN hengyang_base_storagetank as bs ON bs.sysno = ss.storagetank_sysno
+               LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+               LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno WHERE sr.`status` = 1 AND sr.isdel = 0  GROUP BY sr.stockretankno  ORDER BY sr.`sysno` DESC order by stockretankdate asc,stockretankno asc
+
+================================================================================
+time: 2016-12-20 09:16:51
+from: 127.0.0.1
+page: /retank/listJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by stockretankdate desc,stockretankno asc' at line 7"]
+param: SELECT srd.*,SUM(srd.stockretankqty) as stockretankqty,sr.*,ss.customername,ss.goodsname,bu.unitname,ss.customername,ss.goods_sysno,bs.storagetankname
+               FROM hengyang_doc_stock_retank AS sr 
+               LEFT JOIN hengyang_doc_stock_retank_detail AS srd ON srd.stockretank_sysno = sr.sysno
+               LEFT JOIN hengyang_storage_stock as ss ON ss.sysno = srd.out_stock_sysno 
+               LEFT JOIN hengyang_base_storagetank as bs ON bs.sysno = ss.storagetank_sysno
+               LEFT JOIN hengyang_base_goods_attribute AS ga ON ga.goods_sysno = ss.goods_sysno 
+               LEFT JOIN hengyang_base_unit AS bu ON bu.sysno = ga.unit_sysno WHERE sr.`status` = 1 AND sr.isdel = 0  GROUP BY sr.stockretankno  ORDER BY sr.`sysno` DESC order by stockretankdate desc,stockretankno asc
+
+================================================================================
+time: 2016-12-20 10:36:30
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42S22：["42S22",1054,"Unknown column 'hengyang_system_employee.isdel' in 'where clause'"]
+param: SELECT se.*,sd.departmentname,sp.positionname 
+                      FROM `hengyang_system_employee` se
+                      LEFT JOIN hengyang_system_department sd ON sd.sysno = se.department_sysno AND sd.`isdel`=0
+			          LEFT JOIN hengyang_system_position sp ON sp.sysno = se.position_sysno where hengyang_system_employee.isdel =0 order by hengyang_system_employee.`updated_at` desc  LIMIT 0, 20
+
+================================================================================
+time: 2016-12-20 10:36:39
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42S22：["42S22",1054,"Unknown column 'hengyang_system_employee.isdel' in 'where clause'"]
+param: SELECT se.*,sd.departmentname,sp.positionname 
+                      FROM `hengyang_system_employee` se
+                      LEFT JOIN hengyang_system_department sd ON sd.sysno = se.department_sysno AND sd.`isdel`=0
+			          LEFT JOIN hengyang_system_position sp ON sp.sysno = se.position_sysno where hengyang_system_employee.isdel =0 order by hengyang_system_employee.`updated_at` desc  LIMIT 0, 20
+
+================================================================================
+time: 2016-12-20 10:39:40
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42S22：["42S22",1054,"Unknown column 'se.isdel' in 'where clause'"]
+param: SELECT COUNT(*)  FROM `hengyang_system_employee`
+                left join hengyang_system_department on hengyang_system_department.sysno = hengyang_system_employee.department_sysno and hengyang_system_department.`isdel`=0
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 10:40:22
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42S22：["42S22",1054,"Unknown column 'se.isdel' in 'where clause'"]
+param: SELECT COUNT(*)  FROM `hengyang_system_employee`
+                left join hengyang_system_department on hengyang_system_department.sysno = hengyang_system_employee.department_sysno and hengyang_system_department.`isdel`=0
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 10:43:24
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42S22：["42S22",1054,"Unknown column 'se.isdel' in 'where clause'"]
+param: SELECT COUNT(*)  FROM `hengyang_system_employee`
+                left join hengyang_system_department sd on sd.sysno = se.department_sysno and sd.`isdel`=0
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 10:44:04
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*)  FROM `hengyang_system_employee` se\r\n                left join hengyang_syste' at line 1"]
+param: SELECT COUNT(se.*)  FROM `hengyang_system_employee` se
+                left join hengyang_system_department sd on sd.sysno = se.department_sysno and sd.`isdel`=0
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 10:44:33
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*)  FROM `hengyang_system_employee` se\r\n                left join hengyang_syste' at line 1"]
+param: SELECT COUNT(se.*)  FROM `hengyang_system_employee` se
+                left join hengyang_system_department sd on sd.sysno = se.department_sysno and sd.`isdel`=0
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 10:45:19
+from: 127.0.0.1
+page: /employee/employeelistJson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*)  FROM `hengyang_system_employee` se\r\n                left join hengyang_syste' at line 1"]
+param: SELECT COUNT(se.*)  FROM `hengyang_system_employee` se
+                left join hengyang_system_department sd on sd.sysno = se.department_sysno and sd.`isdel`=0 
+                where se.isdel =0 order by se.`updated_at` desc 
+
+================================================================================
+time: 2016-12-20 14:47:10
+from: 127.0.0.1
+page: /bookshipin/edit?_=1482212083979
+error: 42S22：["42S22",1054,"Unknown column 'c.status' in 'where clause'"]
+param: SELECT DISTINCT cu.sysno,cu.customername
+		      FROM hengyang_doc_contract dc 
+		      LEFT JOIN hengyang_customer cu ON cu.sysno = dc.customer_id WHERE c.status = 1 AND c.isdel = 0 AND dc.isdel=0 AND  dc.`contractstatus`=6 AND  dc.`contractenddate`>=NOW() AND  dc.`status` = 1
+
+================================================================================
+time: 2016-12-20 14:47:18
+from: 127.0.0.1
+page: /bookcarin/edit?_=1482212083980
+error: 42S22：["42S22",1054,"Unknown column 'c.status' in 'where clause'"]
+param: SELECT DISTINCT cu.sysno,cu.customername
+		      FROM hengyang_doc_contract dc 
+		      LEFT JOIN hengyang_customer cu ON cu.sysno = dc.customer_id WHERE c.status = 1 AND c.isdel = 0 AND dc.isdel=0 AND  dc.`contractstatus`=6 AND  dc.`contractenddate`>=NOW() AND  dc.`status` = 1
+
+================================================================================
+time: 2016-12-21 17:04:02
+from: 127.0.0.1
+page: /position/datailJson
+error: 23000：["23000",1052,"Column 'status' in where clause is ambiguous"]
+param: SELECT count(position.`sysno`) FROM hengyang_system_position as position
+                left join hengyang_system_department as department  on position.department_sysno =department.sysno
+                where position.isdel=0  and  `department_sysno` = 27  AND  `status` = 2 
+
+================================================================================
+time: 2016-12-21 17:04:05
+from: 127.0.0.1
+page: /position/datailJson
+error: 23000：["23000",1052,"Column 'status' in where clause is ambiguous"]
+param: SELECT count(position.`sysno`) FROM hengyang_system_position as position
+                left join hengyang_system_department as department  on position.department_sysno =department.sysno
+                where position.isdel=0  and  `department_sysno` = 27  AND  `status` = 2 
+
+================================================================================
+time: 2016-12-21 17:46:29
+from: 127.0.0.1
+page: /othercost/datail
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=1=' at line 3"]
+param: SELECT count(hengyang_base_othercost.`sysno`) FROM hengyang_base_othercost
+                left join hengyang_base_unit on hengyang_base_othercost.unit_sysno = hengyang_base_unit.sysno
+                where hengyang_base_othercost.isdel=0  and  hengyang_base_othercost.`status` = =1= 
+
+================================================================================
+time: 2016-12-21 17:46:33
+from: 127.0.0.1
+page: /othercost/datail
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=2=' at line 3"]
+param: SELECT count(hengyang_base_othercost.`sysno`) FROM hengyang_base_othercost
+                left join hengyang_base_unit on hengyang_base_othercost.unit_sysno = hengyang_base_unit.sysno
+                where hengyang_base_othercost.isdel=0  and  hengyang_base_othercost.`status` = =2= 
+
+================================================================================
+time: 2016-12-22 13:32:13
+from: 127.0.0.1
+page: /bookout/boshipdetailedit/cid/88?_=1482376633108
+error: 42S22：["42S22",1054,"Unknown column 'cu.sysno' in 'where clause'"]
+param: SELECT * FROM hengyang_storage_stock  WHERE  cu.`sysno` = 88 
+
+================================================================================
+time: 2016-12-23 11:19:12
+from: 127.0.0.1
+page: /contract/goodsaddoredit
+error: 23000：["23000",1052,"Column 'status' in where clause is ambiguous"]
+param: SELECT ga.*,bg.goodsname,un.unitname 
+                FROM hengyang_base_goods_attribute ga
+                LEFT JOIN hengyang_base_goods  bg ON bg.sysno = ga.goods_sysno
+                LEFT JOIN hengyang_base_unit un ON un.sysno = ga.unit_sysno WHERE `status` = 1 AND isdel = 0 
+
+================================================================================
+time: 2016-12-26 11:24:10
+from: 127.0.0.1
+page: /capacity/datail
+error: 42S22：["42S22",1054,"Unknown column 'bs.status' in 'where clause'"]
+param: SELECT COUNT(*) FROM hengyang_base_storagetank WHERE bs.status = 1 AND bs.isdel = 0 
+
+================================================================================
+time: 2016-12-27 13:42:33
+from: 127.0.0.1
+page: /bookout/boshipdetailedit/cid/106?_=1482804731006
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: select p.* from hengyang_base_ship p where 1 AND p.isdel=0  order by  created_at desc  LIMIT 0, 
+
+================================================================================
+time: 2016-12-27 13:43:47
+from: 127.0.0.1
+page: /bookout/boshipdetailedit/cid/106?_=1482804731007
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: select p.* from hengyang_base_ship p where 1 AND  p.`status`='1' AND p.isdel=0  order by  created_at desc  LIMIT 0, 
+
+================================================================================
+time: 2016-12-27 14:09:35
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=135,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:09:39
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=136,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:09:56
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=137,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:13:19
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'stockinno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=138,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),`goodsname`='甲醇',goodsnature=1,`stockinno`='',`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:13:52
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'stockinno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=139,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),`goodsname`='甲醇',goodsnature=1,`stockinno`='',`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:13:57
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'stockinno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=140,`stock_sysno`='',bookingoutqty=200,`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),`goodsname`='甲醇',goodsnature=1,`stockinno`='',`qualityname`='ISO90001',`unitname`='吨',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:27:54
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=141,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-27 14:28:23
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=142,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-27 14:28:26
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=143,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-27 14:30:41
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=144,`stock_sysno`='',`shipokdate`='',`shipname`='',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),`goods_sysno`='',`goodsname`='',`goodsnature`='',`stockinno`='',`goods_quality_sysno`='',`qualityname`='',`unitname`='',`storagetank_sysno`=''
+
+================================================================================
+time: 2016-12-27 14:37:27
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=145,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-27 14:50:03
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=146,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='S1482810810361771460',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-27 14:50:27
+from: 127.0.0.1
+page: /bookout/shipNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'goods_sysno' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `hengyang_doc_booking_out_detail` SET bookingout_sysno=147,`stock_sysno`='',`shipokdate`='2016-12-27',`shipname`='国烨2号',`memo`='',status=1,isdel=0,version=1,created_at=NOW(),updated_at=NOW(),goods_sysno=74,`goodsname`='甲醇',goodsnature=1,`stockinno`='S1482810810361771460',goods_quality_sysno=31,`qualityname`='ISO90001',`unitname`='吨',storagetank_sysno=77
+
+================================================================================
+time: 2016-12-28 14:29:07
+from: 127.0.0.1
+page: /capacity/datail
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE bs.isdel = 0  cu.`customername` LIKE '%\u6d4b\u8bd5\u5c0f\u767d%' \r\n                GR' at line 9"]
+param: SELECT count(bs.sysno),bs.storagetankname,bs.storagetanknature,bs.storagetankbg,FORMAT(bs.actualcapacity,3) AS actualcapacity,sc.storagetank_categoryname,cu.customername,bg.goodsname,un.unitname,SUM(ss.stockqty) AS stockqty
+                FROM hengyang_base_storagetank bs 
+                LEFT JOIN hengyang_base_storagetank_category sc ON sc.sysno = bs.storagetank_category_sysno 
+                LEFT JOIN hengyang_storage_stock ss ON bs.sysno = ss.storagetank_sysno 
+                LEFT JOIN hengyang_customer cu ON ss.customer_sysno = cu.sysno
+                LEFT JOIN hengyang_base_goods bg ON ss.goods_sysno = bg.sysno 
+                LEFT JOIN hengyang_base_goods_attribute ga ON bg.sysno = ga.goods_sysno
+                LEFT JOIN hengyang_base_unit un ON ga.unit_sysno = un.sysno
+                WHERE ss.isCurrent = 1 AND bs.status = 1 AND bs.isdel = 0  WHERE bs.isdel = 0  cu.`customername` LIKE '%测试小白%' 
+                GROUP BY bs.sysno 
+
+================================================================================
+time: 2016-12-28 14:29:24
+from: 127.0.0.1
+page: /capacity/datail
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE bs.isdel = 0  bs.`storagetankname` LIKE '%B00001%' \r\n                GROUP' at line 9"]
+param: SELECT count(bs.sysno),bs.storagetankname,bs.storagetanknature,bs.storagetankbg,FORMAT(bs.actualcapacity,3) AS actualcapacity,sc.storagetank_categoryname,cu.customername,bg.goodsname,un.unitname,SUM(ss.stockqty) AS stockqty
+                FROM hengyang_base_storagetank bs 
+                LEFT JOIN hengyang_base_storagetank_category sc ON sc.sysno = bs.storagetank_category_sysno 
+                LEFT JOIN hengyang_storage_stock ss ON bs.sysno = ss.storagetank_sysno 
+                LEFT JOIN hengyang_customer cu ON ss.customer_sysno = cu.sysno
+                LEFT JOIN hengyang_base_goods bg ON ss.goods_sysno = bg.sysno 
+                LEFT JOIN hengyang_base_goods_attribute ga ON bg.sysno = ga.goods_sysno
+                LEFT JOIN hengyang_base_unit un ON ga.unit_sysno = un.sysno
+                WHERE ss.isCurrent = 1 AND bs.status = 1 AND bs.isdel = 0  WHERE bs.isdel = 0  bs.`storagetankname` LIKE '%B00001%' 
+                GROUP BY bs.sysno 
+
+================================================================================
+time: 2016-12-28 18:47:44
+from: 127.0.0.1
+page: /stockout/edit/type/1/id/
+error: 42S22：["42S22",1054,"Unknown column 's.isdel' in 'where clause'"]
+param: SELECT bod.*,ss.stockno,bs.storagetankname FROM hengyang_doc_booking_out_detail bod 
+                LEFT JOIN hengyang_storage_stock ss ON ss.sysno = bod.stock_sysno 
+                LEFT JOIN hengyang_base_storagetank bs ON bs.sysno = bod.storagetank_sysno  WHERE s.isdel=0  
+
+================================================================================
+time: 2016-12-28 18:47:54
+from: 127.0.0.1
+page: /stockout/edit/type/1/id/
+error: 42S22：["42S22",1054,"Unknown column 's.isdel' in 'where clause'"]
+param: SELECT bod.*,ss.stockno,bs.storagetankname FROM hengyang_doc_booking_out_detail bod 
+                LEFT JOIN hengyang_storage_stock ss ON ss.sysno = bod.stock_sysno 
+                LEFT JOIN hengyang_base_storagetank bs ON bs.sysno = bod.storagetank_sysno  WHERE s.isdel=0  
+
+================================================================================
+time: 2016-12-29 16:07:09
+from: 127.0.0.1
+page: /contract/detail?_=1482996911857
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:08:22
+from: 127.0.0.1
+page: /contract/detail?_=1482996911858
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:08:24
+from: 127.0.0.1
+page: /contract/detail?_=1482996911859
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:08:46
+from: 127.0.0.1
+page: /contract/detail?_=1482996911860
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:08:48
+from: 127.0.0.1
+page: /contract/detail?_=1482996911861
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:09:18
+from: 127.0.0.1
+page: /contract/detail?_=1482996911862
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-29 16:09:24
+from: 127.0.0.1
+page: /contract/detail?_=1482998961112
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13"]
+param: SELECT c.*,cus.customerclass,cus.customerrelation,cus.customercredit,cus.customerterm,
+                bs.settlementname,em1.employeename as saleemployeename,em2.employeename as csemployeename,
+                cg.goodsname,cg.goodsqualityname,sct.storagetank_categoryname
+				FROM hengyang_doc_contract c
+				LEFT JOIN hengyang_customer cus ON c.customer_id = cus.sysno
+				LEFT JOIN hengyang_base_settlement bs ON c.settlement_sysno = bs.sysno
+				left join hengyang_system_employee em1 on c.saleemployee_sysno = em1.sysno
+				left join hengyang_system_employee em2 on c.csemployee_sysno = em2.sysno
+				left join hengyang_doc_contract_goods cg on cg.contract_sysno = c.sysno
+				left join hengyang_doc_contract_storagetank tank on tank.contract_sysno = c.sysno
+				left join hengyang_base_storagetank bst on bst.sysno = tank.storagetank_sysno
+				left join hengyang_base_storagetank_category sct on sct.sysno = bst.storagetank_category_sysno
+				where c.isdel = 0  group by c.sysno  ORDER BY c.`updated_at` DESC   LIMIT 0, 
+
+================================================================================
+time: 2016-12-31 18:05:19
+from: 127.0.0.1
+page: /index/UserLogin
+error: 42S02：["42S02",1146,"Table 'guoyie_wms_erp.hengyang_system_user' doesn't exist"]
+param: select u.*,e.employeename from hengyang_system_user u left join hengyang_system_employee e on (u.`employee_sysno`=e.`sysno`) where u.`username` = 'super@chinayie.com' AND u.`status` = 1 AND u.isdel = 0
+
+================================================================================
+time: 2016-12-31 18:05:37
+from: 127.0.0.1
+page: /index/UserLogin
+error: 42S02：["42S02",1146,"Table 'guoyie_wms_erp.hengyang_system_user' doesn't exist"]
+param: select u.*,e.employeename from hengyang_system_user u left join hengyang_system_employee e on (u.`employee_sysno`=e.`sysno`) where u.`username` = 'super@chinayie.com' AND u.`status` = 1 AND u.isdel = 0
+
+================================================================================
+time: 2016-12-31 19:45:08
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:47:04
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:48:22
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:48:37
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:50:54
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:50:55
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:50:56
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:51:25
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:53:05
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2016-12-31 19:54:21
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_base_storagetank' doesn't exist"]
+param: SELECT a.sysno,storagetankname,theoreticalcapacity,actualcapacity,a.area_sysno ,sum(b.stockqty) as stockqty FROM strongculture_base_storagetank a
+        left join strongculture_storage_stock b on a.sysno=b.storagetank_sysno
+        where b.isclearstock=0 and b.iscurrent=1 group by a.sysno
+
+================================================================================
+time: 2017-04-24 10:08:20
+from: 127.0.0.1
+page: /travelplan/travelplanlistJson/type/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND status = 1 AND isdel = 0' at line 1"]
+param: SELECT COUNT(*)  FROM `strongculture_system_user_travelplan` WHERE user_sysno = 1 AND planstatus =  AND status = 1 AND isdel = 0
+
+================================================================================
+time: 2017-04-24 11:49:33
+from: 127.0.0.1
+page: /travel/travelhistoryNewJson/
+error: 42S22：["42S22",1054,"Unknown column 'memo' in 'field list'"]
+param: INSERT LOW_PRIORITY INTO `strongculture_system_user_travelplan` SET `placename`='放个�\�',`plantime`='2017-04-24',`memo`='放大',created_at=NOW(),updated_at=NOW()
+
+================================================================================
+time: 2017-04-24 14:11:02
+from: 127.0.0.1
+page: /travel/travelplanEditJson/
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND planstatus = 1' at line 1"]
+param: SELECT * FROM strongculture_system_user_travelplan WHERE sysno =  AND planstatus = 1
+
+================================================================================
+time: 2017-06-02 16:45:08
+from: 127.0.0.1
+page: /index/registerjson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT sysno FROM strongculture_system_user WHERE  isdel =0 AND  (`username` =  '18801628396' 
+
+================================================================================
+time: 2017-06-02 16:47:10
+from: 127.0.0.1
+page: /index/registerjson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT sysno FROM strongculture_system_user WHERE  isdel =0 AND  (`username` =  '18801628396' 
+
+================================================================================
+time: 2017-06-02 16:51:29
+from: 127.0.0.1
+page: /index/registerjson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT sysno FROM strongculture_system_user WHERE  isdel =0 AND  (`username` =  '18801628396' 
+
+================================================================================
+time: 2017-06-02 16:54:00
+from: 127.0.0.1
+page: /index/registerjson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT sysno FROM strongculture_system_user WHERE  isdel =0 AND  (`username` =  '18801628396' 
+
+================================================================================
+time: 2017-06-02 16:54:38
+from: 127.0.0.1
+page: /index/registerjson
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1"]
+param: SELECT sysno FROM strongculture_system_user WHERE  isdel =0 AND  (`username` =  '18801628396' 
+
+================================================================================
+time: 2017-06-02 19:34:30
+from: 127.0.0.1
+page: /
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_system_user_travelplan' doesn't exist"]
+param: SELECT placename FROM strongculture_system_user_travelplan WHERE user_sysno = 1 AND planstatus = 2 AND status = 1 AND isdel = 0
+
+================================================================================
+time: 2017-06-02 22:46:09
+from: 127.0.0.1
+page: /
+error: 42S22：["42S22",1054,"Unknown column 'user_sysno' in 'where clause'"]
+param: select rolename from strongculture_system_role where user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:46:15
+from: 127.0.0.1
+page: /
+error: 42S22：["42S22",1054,"Unknown column 'user_sysno' in 'where clause'"]
+param: select rolename from strongculture_system_role where user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:46:23
+from: 127.0.0.1
+page: /
+error: 42S22：["42S22",1054,"Unknown column 'user_sysno' in 'where clause'"]
+param: select rolename from strongculture_system_role where user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:46:27
+from: 127.0.0.1
+page: /
+error: 42S22：["42S22",1054,"Unknown column 'user_sysno' in 'where clause'"]
+param: select rolename from strongculture_system_role where user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:48:12
+from: 127.0.0.1
+page: /
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-r-role urr on urr.role_sysno = sr.sysno\r\n\t\t\t\twhere urr.user_sysno = 27' at line 3"]
+param: select sr.rolename 
+				from strongculture_system_role sr
+				left join strongculture_system_user-r-role urr on urr.role_sysno = sr.sysno
+				where urr.user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:48:16
+from: 127.0.0.1
+page: /
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-r-role urr on urr.role_sysno = sr.sysno\r\n\t\t\t\twhere urr.user_sysno = 27' at line 3"]
+param: select sr.rolename 
+				from strongculture_system_role sr
+				left join strongculture_system_user-r-role urr on urr.role_sysno = sr.sysno
+				where urr.user_sysno = 27 
+
+================================================================================
+time: 2017-06-02 22:48:35
+from: 127.0.0.1
+page: /
+error: 42000：["42000",1064,"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-r-role urr on urr.role_sysno = sr.sysno\r\n\t\t\t\twhere urr.user_sysno = 27' at line 3"]
+param: select sr.rolename
+				from strongculture_system_role sr
+				left join strongculture_system_user-r-role urr on urr.role_sysno = sr.sysno
+				where urr.user_sysno = 27 
+
+================================================================================
+time: 2017-06-04 11:40:14
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 11:41:18
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 11:49:04
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:02:05
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:02:12
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:04:50
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:06:05
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:06:52
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:09:04
+from: 127.0.0.1
+page: /user/userEditJson/
+error: 42S22：["42S22",1054,"Unknown column 'address' in 'field list'"]
+param: UPDATE LOW_PRIORITY `strongculture_system_user` SET `nickname`='神话',username=18801628396,`realname`='伍贤能',sex=0,`telephone`='',`email`='',`birthday`='',`nation`='',`origin`='',marriage=0,`politics`='',`education`='',`major`='',`university`='二工大',`address`='',`idcard`='',`bankaccount`='',`memo`='',status=1,isdel=0,updated_at=NOW() WHERE sysno=27
+
+================================================================================
+time: 2017-06-04 12:20:59
+from: 127.0.0.1
+page: /index/UserLogin
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_system_employee' doesn't exist"]
+param: select u.*,e.employeename from strongculture_system_user u left join strongculture_system_employee e on (u.`employee_sysno`=e.`sysno`) where u.`username` = '18801628396' AND u.`status` = 1 AND u.isdel = 0
+
+================================================================================
+time: 2017-06-04 12:25:16
+from: 127.0.0.1
+page: /index/UserLogin
+error: 42S02：["42S02",1146,"Table 'strongculture.strongculture_system_employee' doesn't exist"]
+param: select u.*,e.employeename from strongculture_system_user u left join strongculture_system_employee e on (u.`employee_sysno`=e.`sysno`) where u.`username` = '18801628396' AND u.`status` = 1 AND u.isdel = 0
+
+================================================================================
+time: 2017-06-04 16:19:37
+from: 127.0.0.1
+page: /user/list?_=1496563777031
+error: 42S22：["42S22",1054,"Unknown column 'su.isdel' in 'where clause'"]
+param: SELECT count(`sysno`) FROM `strongculture_system_user`  WHERE su.`isdel` = 0 
+

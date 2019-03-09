@@ -49,9 +49,7 @@ class PrivilegePlugin extends Yaf_Plugin_Abstract
         if ($P->check($controller, $action, $user ))
         {
 
-        }
-        else
-        {
+        }else{
             COMMON::result(300,'您没有权限访问，请联系管理员。');
             exit;
         }

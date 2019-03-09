@@ -15,8 +15,6 @@ define('SSN_INFO',  'msr');
 define('SSN_VAR',  'hengyang');
 define('SSN_LOG',   'log');
 define('SSN_SA',    99999);
-define('VERSION', '1.0.0');
-define('DB_PREFIX',  'hengyang_');
 
 define('VAL_YES',     1);
 define('VAL_NO',      0);

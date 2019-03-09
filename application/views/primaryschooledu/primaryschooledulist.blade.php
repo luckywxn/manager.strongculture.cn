@@ -1,12 +1,7 @@
-<style>
-    img{
-        width: 100%;
-    }
-</style>
-<div style="background-color:#fff;position:relative; overflow:auto;">
+<div class="bjui-pageHeader " style="background-color:#fff;height:550px;position:relative; overflow:auto">
     <br>
-    <p><img src="../../../upload/primaryschool/{{$grade}}/{{$id}}.1.jpg"></p>
-    <p><img src="../../../upload/primaryschool/{{$grade}}/{{$id}}.2.jpg"></p>
-    <p><img src="../../../upload/primaryschool/{{$grade}}/{{$id}}.3.jpg"></p>
-    <p><img src="../../../upload/primaryschool/{{$grade}}/{{$id}}.4.jpg"></p>
+    <p style='text-align:center'><img src="upload/primaryschool/{{$grade}}/{{$id}}.1.jpg"></p>
+    <p style='text-align:center'><img src="upload/primaryschool/{{$grade}}/{{$id}}.2.jpg"></p>
+    <p style='text-align:center'><img src="upload/primaryschool/{{$grade}}/{{$id}}.3.jpg"></p>
+    <p style='text-align:center'><img src="upload/primaryschool/{{$grade}}/{{$id}}.4.jpg"></p>
 </div>

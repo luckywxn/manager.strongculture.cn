@@ -105,5 +105,193 @@ class PrivilegeModel
     {
         $this->dbh->insert('strongculture_system_log_privilege', $input);
     }
+
+	/**
+	 * 更新指定用户id的授权操作(依据角色)
+	 *
+	 * @param  integer     $uid     用户id
+	 * @param  integer     $rids    角色ids
+	 * @return void
+	 */
+	public function setUserPrivilegesByRole($uid, $rids)
+    {
+        $all = array();
+        if ($rids)
+        {
+            $sql = "SELECT DISTINCT af_id FROM admin_privilege WHERE ap_object=2 AND ap_object_id IN (#1) AND ap_status=1";
+            $all = $this->dbh->select($sql, $rids);
+        }
+        $key = "privilege:user:{$uid}";
+        if ($this->mch->exists($key))
+        {
+            $this->mch->delete($key);
+        }
+        foreach ($all as $row)
+        {
+            $this->mch->sAdd($key, $row['af_id']);
+        }
+        if (count($all))
+        {
+            //$this->mch->setTimeout($key, 60*60); //1 hour
+            $this->mch->expire($key, 60*60*8); //9 hour
+        }
+    }
+
+	/**
+	 * 返回指定用户的授权操作菜单
+	 *
+	 * @param  array    $user   用户
+	 * @return void
+	 */
+	public function getUserMenu($user)
+    {
+        $menu = '';
+        $all = array();
+        if ($user['sa'] == SSN_SA)
+        {
+            $sql = "SELECT * FROM admin_function WHERE af_menu_on=1 AND af_status>=0 ORDER BY af_app,af_menu_order";
+            $all = $this->dbh->select($sql);
+        }
+        else
+        {
+            $key = "privilege:user:{$user['id']}";
+            $arr = $this->mch->sMembers($key);
+            if (count($arr))
+            {
+                $sql = "SELECT * FROM admin_function WHERE af_id IN (#1) AND af_menu_on=1 AND af_status>=0 ORDER BY af_app,af_menu_order";
+                $all = $this->dbh->select($sql, implode(',', $arr));
+            }
+        }
+        $app = array();
+        foreach ($all as $i => $row)
+        {
+            if (!isset($app["{$row['af_app']}"]))
+            {
+                $app["{$row['af_app']}"] = 1;
+                if ($i > 0)
+                {
+                    $menu .= "</ul></li>\r\n<li><a>" . substr($row['af_app'],1). "</a><ul>";
+                }
+                else
+                {
+                    $menu .= "<li><a>" . substr($row['af_app'],1). "</a><ul>";
+                }
+            }
+            $menu .= "<li><a href=\"" . WEB_ROOT . "{$row['af_menu_url']}\" target=\"navTab\" rel=\"{$row['af_module']}.{$row['af_action']}\">{$row['af_name']}</a></li>";
+        }
+        if (count($app))
+        {
+            $menu .= "</ul></li>";
+        }
+
+        return $menu;
+    }
+
+    /**
+     * 返回指定用户的授权操作菜单
+     *
+     * @param  array    $user   用户
+     * @return void
+     */
+    public function getUserMenuByNav($user,$navId)
+    {
+        $menu = '';
+        $all = array();
+        
+        $nav_arr = array(0=>"common",1=>"carneed",2=>"need",3=>"xinneed",4=>"trainneed",5=>"marryneed",6=>"ticketneed");
+        $nav_str = " ('carneed','need','xinneed','trainneed','marryneed','ticketneed') ";
+        if ($user['sa'] == SSN_SA)
+        {
+            if ($navId == 0) {
+                $sql = "SELECT * FROM admin_function WHERE af_menu_on=1 AND af_module not in {$nav_str} AND af_status>=0 ORDER BY af_app,af_menu_order";
+            }
+            else{
+                $sql = "SELECT * FROM admin_function WHERE af_menu_on=1 AND af_module='{$nav_arr[$navId]}' AND af_status>=0 ORDER BY af_app,af_menu_order";    
+            }
+            
+            $all = $this->dbh->select($sql);
+        }
+        else
+        {
+            $key = "privilege:user:{$user['id']}";
+            $arr = $this->mch->sMembers($key);
+            if (count($arr))
+            {
+                if ($navId == 0) {
+                    $sql = "SELECT * FROM admin_function WHERE af_id IN (#1) AND af_menu_on=1 AND af_module not in {$nav_str} AND af_status>=0 ORDER BY af_app,af_menu_order";
+                }else{
+                    $sql = "SELECT * FROM admin_function WHERE af_id IN (#1) AND af_menu_on=1 AND af_module='{$nav_arr[$navId]}' AND af_status>=0 ORDER BY af_app,af_menu_order";
+                }
+                $all = $this->dbh->select($sql, implode(',', $arr));
+            }
+        }
+        $app = array();
+        foreach ($all as $i => $row)
+        {
+            if (!isset($app["{$row['af_app']}"]))
+            {
+                $app["{$row['af_app']}"] = 1;
+                if ($i > 0)
+                {
+                    $menu .= "</ul></li>\r\n<li><a>" . substr($row['af_app'],1). "</a><ul>";
+                }
+                else
+                {
+                    $menu .= "<li><a>" . substr($row['af_app'],1). "</a><ul>";
+                }
+            }
+            $menu .= "<li><a href=\"" . WEB_ROOT . "{$row['af_menu_url']}\" target=\"navTab\" rel=\"{$row['af_module']}.{$row['af_action']}\">{$row['af_name']}</a></li>";
+        }
+        if (count($app))
+        {
+            $menu .= "</ul></li>";
+        }
+
+        return $menu;
+    }
+
+    public function getUserMenu1($user)
+    {
+    	$menu = '';
+    	$all = array();
+    	if ($user['sa'] == SSN_SA)
+    	{
+    		$sql = "SELECT * FROM admin_function WHERE af_menu_on=1 AND af_module='carneed' AND af_status>=0 ORDER BY af_app,af_menu_order";
+    		$all = $this->dbh->select($sql);
+    	}
+    	else
+    	{
+    		$key = "privilege:user:{$user['id']}";
+    		$arr = $this->mch->sMembers($key);
+    		if (count($arr))
+    		{
+    			$sql = "SELECT * FROM admin_function WHERE af_id IN (#1) AND af_menu_on=1 AND af_status>=0 AND af_module='carneed' ORDER BY af_app,af_menu_order";
+    			$all = $this->dbh->select($sql, implode(',', $arr));
+    		}
+    	}
+    	$app = array();
+    	foreach ($all as $i => $row)
+    	{
+    		if (!isset($app["{$row['af_app']}"]))
+    		{
+    			$app["{$row['af_app']}"] = 1;
+    			if ($i > 0)
+    			{
+    				$menu .= "</ul></li>\r\n<li><a>" . substr($row['af_app'],1). "</a><ul>";
+    			}
+    			else
+    			{
+    				$menu .= "<li><a>" . substr($row['af_app'],1). "</a><ul>";
+    			}
+    		}
+    		$menu .= "<li><a href=\"" . WEB_ROOT . "{$row['af_menu_url']}\" target=\"navTab\" rel=\"{$row['af_module']}.{$row['af_action']}\">{$row['af_name']}</a></li>";
+    	}
+    	if (count($app))
+    	{
+    		$menu .= "</ul></li>";
+    	}
+    
+    	return $menu;
+    }    
     
 }

@@ -1,80 +1,152 @@
-<!DOCTYPE html>
-<html lang="zh-CN" style="font-size: 100px;">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="robots" content="all">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="yes" name="apple-touch-fullscreen">
-    <meta content="telephone=no" name="format-detection">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <title>强势文化学习系统-移动版</title>
-    <link href="favicon.ico" mce_href="favicon.ico" rel="icon">
-    <!-- start 计算页面使用rem的尺寸 必须放在头部 -->
-    <script src="../../../common/js/jquery-1.11.3.min.js" name="MTAH5" sid="500376155" cid="500376159"></script>
-    <script src="../../../common/js/stats.js" name="MTAH5" sid="500376155" cid="500376159"></script>
-    <link rel="stylesheet" href="../../../common/style/pact.css">
-    <style>
-        ul{
-            list-style:none;
-            margin:0px;
-        }
-        input{
-            text-align: center;
-        }
-        button{
-            margin: 5px 40px;
-            padding:5px 10px;
-            border: none;
-            background-color: #8CCD0A;
-        }
-    </style>
-</head>
-<body>
-<section class="wrap">
-    <section class="logo"></section>
-    <form action="/User/userEditJson" method="post">
+<script src="/static/common/js/custom.js"></script>
+<div class="bjui-pageContent">
+    <form id="userinfoform" action="/user/userEditJson/" class="datagrid-edit-form" data-toggle="validate" data-data-type="json">
         <input type="hidden" name="id" value="{{$sysno}}">
         <input type="hidden" name="role" value="{{$role}}">
-        <section class="login-wrap input-list">
-            <span style="display:block;width:100%;text-align: center;"><img src="{{$photourl}}" style="width: 50px;height: 50px"></span>
-            <label style="display:block;text-align: center; font-size: 24px">{{$nickname}}</label>
-            <input style="display:none;" name="nickname" value="{{$nickname}}">
-            <br>
-            <ul>
-                <li><label>会员id</label><input type="text" name="sysno" value="{{$sysno}}" disabled></li>
-                <li><label>账&nbsp;&nbsp;号</label><input type="text" name="username" value="{{$username}}" disabled></li>
-                <li><label>姓&nbsp;&nbsp;名</label><input type="text" name="realname" value="{{$realname}}" readonly></li>
-                <li><label>会员等级</label><input type="text" name="rolename" value="{{$rolename}}" disabled></li>
-                <li><label>性&nbsp;&nbsp;别</label><input type="text" name="sex" value="@if($sex ==0) 男 @else 女 @endif"  readonly></li>
-                <li><label>联系电话</label><input type="text" name="telephone" value="{{$telephone}}" readonly></li>
-                <li><label>电子邮箱</label><input type="text" name="email" value="{{$email}}" readonly> </li>
-                <li><label>出生日期</label><input type="text" name="birthday" value="{{$birthday}}" readonly></li>
-                <li><label>民&nbsp;&nbsp;族</label><input type="text" name="nation" value="{{$nation}}" readonly></li>
-                <li><label>籍&nbsp;&nbsp;贯</label><input type="text" name="origin" value="{{$origin}}" readonly></li>
-                <li><label>婚姻状况</label><input type="text" name="marriage" value="@if($marriage ==0) 未婚 @else 已婚 @endif" readonly></li>
-                <li><label>政治面貌</label><input type="text" name="politics" value="{{$politics}}" readonly></li>
-                <li><label>学&nbsp;&nbsp;历</label><input type="text" name="education" value="{{$education}}" readonly></li>
-                <li><label>专&nbsp;&nbsp;业</label><input type="text" name="major" value="{{$major}}" readonly></li>
-                <li><label>毕业院校</label><input type="text" name="university" value="{{$university}}" readonly></li>
-                <li><label>联系地址</label><input type="text" name="address" value="{{$address}}" readonly></li>
-                <li><label>身份证号</label><input type="text" name="idcard" value="{{$idcard}}" readonly></li>
-                <li><label>银行帐号</label><input type="text" name="bankaccount" value="{{$bankaccount}}" readonly></li>
-                <li><label>注册时间</label><input type="text" name="created_at" value="{{$created_at}}" readonly></li>
-            </ul>
-            <button id="edit" type="button">编辑资料</button><button id="save" type="submit" style="display: none">保存</button>
-        </section>
+        <div class="bjui-row col-3">
+            <label class="row-label">会员头像</label>
+            <div class="row-input">
+                <input type="file" data-name="custom.pic" data-toggle="webuploader" data-options="
+                {
+                    pick: {label: '点击选择图片'},
+                    server: '/user/ajaxUpload',
+                    fileNumLimit: 1,
+                    formData: {'backid':'userphoto'},
+                    required: false,
+                    uploaded: '{{$userphoto}}',
+                    accept: {
+                        title: '图片',
+                        extensions: 'jpg,png,pdf,txt',
+                        mimeTypes: '.jpg,.png,.pdf,.txt'
+                    }
+                }">
+            </div>
 
+            <label class="row-label">昵称</label>
+            <div class="row-input">
+                <input type="text" name="nickname" value="{{$nickname}}">
+            </div>
+
+            <label class="row-label">会员id</label>
+            <div class="row-input">
+                <input type="text" name="sysno" value="{{$sysno}}" data-rule="number" readonly>
+            </div>
+
+            <label class="row-label">账号</label>
+            <div class="row-input">
+                <input type="text" name="username" value="{{$username}}" readonly>
+            </div>
+
+            <label class="row-label">姓名</label>
+            <div class="row-input">
+                <input type="text" name="realname" value="{{$realname}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">会员等级</label>
+            <div class="row-input">
+                <input type="text" name="rolename" value="{{$rolename}}" data-rule="chinese" readonly>
+            </div>
+
+            <label class="row-label">性别</label>
+            <div class="row-input">
+                <input type="radio" name="sex"  data-toggle="icheck" value="0" data-label="男&nbsp;&nbsp;" @if($sex ==0) checked @endif>
+                <input type="radio" name="sex"  data-toggle="icheck" value="1" data-label="女" @if($sex ==1) checked @endif>
+            </div>
+
+            <label class="row-label">联系电话</label>
+            <div class="row-input">
+                <input type="text" name="telephone" value="{{$telephone}}">
+            </div>
+
+            <label class="row-label">电子邮箱</label>
+            <div class="row-input">
+                <input type="text" name="email" value="{{$email}}" data-rule="email">
+            </div>
+
+            <label class="row-label">出生日期</label>
+            <div class="row-input">
+                <input type="text" name="birthday" value="{{$birthday}}" data-toggle="datepicker" >
+            </div>
+
+            <label class="row-label">民族</label>
+            <div class="row-input">
+                <input type="text" name="nation" value="{{$nation}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">籍贯</label>
+            <div class="row-input">
+                <input type="text" name="origin" value="{{$origin}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">婚姻状况</label>
+            <div class="row-input">
+                <input type="radio" name="marriage"  data-toggle="icheck" value="0" data-label="未婚&nbsp;&nbsp;" @if($marriage ==0) checked @endif>
+                <input type="radio" name="marriage"  data-toggle="icheck" value="1" data-label="已婚" @if($marriage ==1) checked @endif>
+            </div>
+
+            <label class="row-label">政治面貌</label>
+            <div class="row-input">
+                <input type="text" name="politics" value="{{$politics}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">学历</label>
+            <div class="row-input">
+                <input type="text" name="education" value="{{$education}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">专业</label>
+            <div class="row-input">
+                <input type="text" name="major" value="{{$major}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">毕业院校</label>
+            <div class="row-input">
+                <input type="text" name="university" value="{{$university}}" data-rule="chinese">
+            </div>
+
+            <label class="row-label">联系地址</label>
+            <div class="row-input">
+                <input type="text" name="address" value="{{$address}}">
+            </div>
+
+            <label class="row-label">身份证号</label>
+            <div class="row-input">
+                <input type="text" name="idcard" value="{{$idcard}}" data-rule="IDcard">
+            </div>
+
+            <label class="row-label">银行帐号</label>
+            <div class="row-input">
+                <input type="text" name="bankaccount" value="{{$bankaccount}}" data-rule="number">
+            </div>
+
+            <label class="row-label">注册时间</label>
+            <div class="row-input">
+                <input type="text" name="created_at" value="{{$created_at}}" readonly>
+            </div>
+
+            <label class="row-label">备注</label>
+            <div class="row-input">
+                <textarea type="text" name="memo" >{{$memo}}</textarea>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <div class="text-center btns-user">
+            <button id="userinfosave" type="button" class="btn btn-green btn-lg">保存</button>
+        </div>
     </form>
-</section>
+</div>
 <script>
-    $("#edit").click(function (){
-        $("li input").attr('style','background-color: #fff;');
-        $("li input").removeAttr('readonly');
-        $("#save").attr("style",'display:inline');
+    $("#userinfosave").click(function (){
+        BJUI.ajax('ajaxform', {
+            url: '/user/userEditJson/',
+            form: $.CurrentNavtab.find('#userinfoform'),
+            validate: true,
+            loadingmask: true,
+            okCallback: function (json, options) {
+                BJUI.navtab('closeCurrentTab', '');
+            }
+        });
     })
 </script>
-</body>
-</html>
