@@ -1,10 +1,5 @@
-#guoyie first ver 0.2
-#laravel¼Ü¹¹
-Ä£ÐÍModel ¿ØÖÆÆ÷Contorl ÊÓÍ¼View		
-Êý¾Ý¿â ÊÓÍ¼ÁªÏµ ²Ù×÷Êý¾Ý¿âÇ¨ÒÆÊ±·¢ÉúÒ»Ð©bug£¬ÒÑÐÞ¸´¡£		
+#ç›´é”€æ˜“è´­ first ver 1.0
+#yafæž¶æž„
+æ¨¡åž‹Model æŽ§åˆ¶å™¨Contorl è§†å›¾View		
+æ•°æ®åº“ mysql
 
-¸ù¾Ý±í½á¹¹Éè¼Æ¶þÀïÄÚÈÝÏàÓ¦×öÁËÊý¾Ý±íÉú³É		
-¾ßÌå²Ù×÷Çë²Î¿¼docÎÄ¼þ¡£		
-
-¸üÐÂÁËÑéÖ¤»úÖÆ£¬ÓÉÓÚÒ³Ãæ·þÎñÆ÷ÉÏÐÞ¸ÄºÜ¶à£¬ËùÒÔÃ»ÉÏ´«£¬Ö»ÊÇÔÚgitÉÏ¸üÐÂ
-ÐèÒªÐ¡ÐÄµÄºÏ²¢Ò»ÏÂ¡£
