@@ -47,7 +47,7 @@ class SystemModel {
             $where = ' WHERE ' . implode(' AND ', $filter);
         }
 
-        $sql = "select * from strongculture_system_privilege ".$where;
+        $sql = "select * from concap_privilege ".$where;
         return  $this->dbh->select($sql);
 	}
 
@@ -60,7 +60,7 @@ class SystemModel {
 	public function getPrivilegeListByPidUid($uid =0,$pid = 0, $type = 0) {
 		$arr = array();
 		if($uid){
-			$sql = "select distinct p.* from `strongculture_system_privilege` p ,   `strongculture_system_role-r-privilege` rp , `strongculture_system_user-r-role` ur where ((rp.privilege_sysno = p.sysno and rp.role_sysno = ur.role_sysno and ur.user_sysno = '".$uid."') or p.needcheck = 0 ) and p.isdel = 0 and p.status = 1 ";
+			$sql = "select distinct p.* from `concap_privilege` p ,   `concap_role_r_privilege` rp , `concap_user_r_role` ur where ((rp.privilege_sysno = p.sysno and rp.role_sysno = ur.role_sysno and ur.user_sysno = '".$uid."') or p.needcheck = 0 ) and p.isdel = 0 and p.status = 1 ";
 			if ($pid > -1) {
 				$sql .= " and p.parent_sysno = $pid ";
 			}
@@ -71,7 +71,7 @@ class SystemModel {
 			$sql .= "  order by p.menuorder desc ";
 			
 		}else{
-			$sql = "select * from strongculture_system_privilege where isdel = 0 and status = 1";
+			$sql = "select * from concap_privilege where isdel = 0 and status = 1";
 			if ($pid > -1) {
 				$sql .= " and parent_sysno = $pid ";
 			}
@@ -86,11 +86,11 @@ class SystemModel {
 
 	public function addPrivilege($data) {
 
-		return $this->dbh->insert('strongculture_system_privilege', $data);
+		return $this->dbh->insert('concap_privilege', $data);
 	}
 
 	public function updatePrivilege($id = 0, $data = array()) {
-		return $this->dbh->update('strongculture_system_privilege', $data, 'sysno=' . intval($id));
+		return $this->dbh->update('concap_privilege', $data, 'sysno=' . intval($id));
 	}
 
 	/**
@@ -99,7 +99,7 @@ class SystemModel {
 	 * @return 数组
 	 */
 	public function getPrivilegeById($id = 0) {
-		$sql = "select p.*,(select privilegename from strongculture_system_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from strongculture_system_privilege p where sysno = $id ";
+		$sql = "select p.*,(select privilegename from concap_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from concap_privilege p where sysno = $id ";
 
 		return $this->dbh->select_row($sql);
 	}
@@ -126,7 +126,7 @@ class SystemModel {
 			$where .= ' AND ' . implode(' AND ', $filter);
 		}
 
-		$sql = "SELECT COUNT(*)  from strongculture_system_privilege p {$where} ";
+		$sql = "SELECT COUNT(*)  from concap_privilege p {$where} ";
 
 		$result = $params;
 
@@ -137,7 +137,7 @@ class SystemModel {
 		{
 
 			if( isset($params['page'] ) && $params['page'] == false){
-				$sql = "select p.*,(select privilegename from strongculture_system_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from strongculture_system_privilege p {$where} ";
+				$sql = "select p.*,(select privilegename from concap_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from concap_privilege p {$where} ";
 				if($params['orders'] != '')
 					$sql .= " order by ".$params['orders'] ;
 
@@ -152,7 +152,7 @@ class SystemModel {
 				$this->dbh->set_page_rows($params['pageSize'] );
 
 
-				$sql = "select p.*,(select privilegename from strongculture_system_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from strongculture_system_privilege p {$where} ";
+				$sql = "select p.*,(select privilegename from concap_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from concap_privilege p {$where} ";
 				if($params['orders'] != '')
 					$sql .= " order by ".$params['orders'] ;
 
@@ -184,14 +184,14 @@ class SystemModel {
 	public function addRole($data, $privileges = "") {
 		$this->dbh->begin();
 		try {
-			$res = $this->dbh->insert('strongculture_system_role', $data);
+			$res = $this->dbh->insert('concap_role', $data);
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
 			}
 
 			$id = $res;
-			$res = $this->dbh->delete('strongculture_system_role-r-privilege', 'role_sysno=' . intval($id));
+			$res = $this->dbh->delete('concap_role_r_privilege', 'role_sysno=' . intval($id));
 
 			if (!$res) {
 				$this->dbh->rollback();
@@ -207,8 +207,8 @@ class SystemModel {
 							'role_sysno' => $id,
 							'privilege_sysno' => $value,
 						);
-						//strongculture_system_role-r-privilege insert
-						$res = $this->dbh->insert('strongculture_system_role-r-privilege', $privilegesdata);
+						//concap_role_r_privilege insert
+						$res = $this->dbh->insert('concap_role_r_privilege', $privilegesdata);
 
 						if (!$res) {
 							$this->dbh->rollback();
@@ -231,13 +231,13 @@ class SystemModel {
 	public function updateRole($id = 0, $data = array(), $privileges = "") {
 		$this->dbh->begin();
 		try {
-			$res = $this->dbh->update('strongculture_system_role', $data, 'sysno=' . intval($id));
+			$res = $this->dbh->update('concap_role', $data, 'sysno=' . intval($id));
 
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
 			}
-			$res = $this->dbh->delete('strongculture_system_role-r-privilege', 'role_sysno=' . intval($id));
+			$res = $this->dbh->delete('concap_role_r_privilege', 'role_sysno=' . intval($id));
 			if (!$res) {
 				$this->dbh->rollback();
 				return false;
@@ -251,7 +251,7 @@ class SystemModel {
 							'role_sysno' => $id,
 							'privilege_sysno' => $value,
 						);
-						$res = $this->dbh->insert('strongculture_system_role-r-privilege', $privilegesdata);
+						$res = $this->dbh->insert('concap_role_r_privilege', $privilegesdata);
 
 						if (!$res) {
 							$this->dbh->rollback();
@@ -284,7 +284,7 @@ class SystemModel {
 			$where .= ' AND ' . implode(' AND ', $filter);
 		}
 
-		$sql = "select p.*,(select privilegename from strongculture_system_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from strongculture_system_privilege p where {$where} ";
+		$sql = "select p.*,(select privilegename from concap_privilege pp where pp.sysno = p.parent_sysno) as parent_privilegename from concap_privilege p where {$where} ";
 
 		return $this->dbh->select($sql);
 	}
@@ -293,7 +293,7 @@ class SystemModel {
 	 * 角色对应权限by数据库
 	 */
 	public function getRolePrivilege($id = 0) {
-		$sql = "select p.* from `strongculture_system_role-r-privilege` p where role_sysno = $id ";
+		$sql = "select p.* from `concap_role_r_privilege` p where role_sysno = $id ";
 
 		return $this->dbh->select($sql);
 	}
@@ -353,15 +353,15 @@ class SystemModel {
 	 * @return 数组
 	 */
 	public function getRoleById($id = 0) {
-		$sql = "select p.* from strongculture_system_role p where sysno = $id ";
+		$sql = "select p.* from concap_role p where sysno = $id ";
 
 		return $this->dbh->select_row($sql);
 	}
 
 	public function getRoleByUserId($userid){
 		$sql = "select sr.rolename
-				from strongculture_system_role sr
-				left join `strongculture_system_user-r-role` urr on urr.role_sysno = sr.sysno
+				from concap_role sr
+				left join `concap_user_r_role` urr on urr.role_sysno = sr.sysno
 				where urr.user_sysno = $userid ";
 		return $this->dbh->select_one($sql);
 	}
@@ -387,7 +387,7 @@ class SystemModel {
 			$where .= ' AND ' . implode(' AND ', $filter);
 		}
 
-		$sql = "SELECT COUNT(*)  from strongculture_system_role p where  {$where} ";
+		$sql = "SELECT COUNT(*)  from concap_role p where  {$where} ";
 
 		$result = $params;
 
@@ -398,7 +398,7 @@ class SystemModel {
 		if ($result['totalRow']) {
 
 			if( isset($params['page'] ) && $params['page'] == false){
-				$sql = "select p.* from strongculture_system_role p where {$where} ";
+				$sql = "select p.* from concap_role p where {$where} ";
 				if($params['orders'] != '')
 					$sql .= " order by ".$params['orders'] ;
 
@@ -412,7 +412,7 @@ class SystemModel {
 				$this->dbh->set_page_num($params['pageCurrent']);
 				$this->dbh->set_page_rows($params['pageSize']);
 
-				$sql = "select p.* from strongculture_system_role p where {$where} ";
+				$sql = "select p.* from concap_role p where {$where} ";
 				if ($params['orders'] != '') {
 					$sql .= " order by " . $params['orders'];
 				}

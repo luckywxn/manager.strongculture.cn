@@ -55,7 +55,7 @@ class PrivilegeModel
             return false;
         }
 				
-        $sql = "SELECT * FROM strongculture_system_privilege WHERE privilegecontroller='#1' AND privilegeaction='#2' and status in (1,2) and isdel = 0 ";
+        $sql = "SELECT * FROM concap_privilege WHERE privilegecontroller='#1' AND privilegeaction='#2' and status in (1,2) and isdel = 0 ";
         $rows = $this->dbh->select($sql, $controller, $action);
         if (!empty($rows))
         {
@@ -63,7 +63,7 @@ class PrivilegeModel
                 if( !$row['needcheck'])
                 return $res;
                     
-                 $sql = "select count(rp.sysno) from  `strongculture_system_role-r-privilege` rp , `strongculture_system_user-r-role` ur where rp.privilege_sysno = '#1' and rp.role_sysno = ur.role_sysno and ur.user_sysno = '#2' ";
+                 $sql = "select count(rp.sysno) from  `concap_role_r_privilege` rp , `concap_user_r_role` ur where rp.privilege_sysno = '#1' and rp.role_sysno = ur.role_sysno and ur.user_sysno = '#2' ";
 
                 $cnt = $this->dbh->select_one($sql, $row['sysno'], $user['sysno']);
                  
@@ -103,7 +103,7 @@ class PrivilegeModel
 	 */
 	public function addPrivilegeLog($input =array())
     {
-        $this->dbh->insert('strongculture_system_log_privilege', $input);
+        $this->dbh->insert('concap_log_privilege', $input);
     }
 
 	/**

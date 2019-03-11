@@ -2,11 +2,10 @@
 use Gregwar\Captcha\CaptchaBuilder;
 require_once('Ucpaas.class.php');
 
-
 class IndexController extends Yaf_Controller_Abstract {
+
 	/**
 	 * IndexController::init()
-	 *
 	 * @return void
 	 */
 	public function init() {
@@ -22,19 +21,18 @@ class IndexController extends Yaf_Controller_Abstract {
 	public function IndexAction() {
 		$params = array();
 		$S = new SystemModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
-		$T = new TravelModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
 		$params['user']  = Yaf_Registry::get(SSN_VAR);
 		$params['navtab']  =  $S->getPrivilegeListByPidUid($params['user']['sysno'],0);
 
 		$params['role'] = $S->getRoleByUserId($params['user']['sysno']);
-		$travelplans =  $T->getTravellist2($params['user']['sysno'],2);
-		$travelhistorys =  $T->getTravellist2($params['user']['sysno'],1);
-		foreach($travelplans as $item){
-			$params['travelplan'][] = $item['placename'];
-		}
-		foreach($travelhistorys as $item){
-			$params['travelhistory'][] = $item['placename'];
-		}
+//		$travelplans =  $T->getTravellist2($params['user']['sysno'],2);
+//		$travelhistorys =  $T->getTravellist2($params['user']['sysno'],1);
+//		foreach($travelplans as $item){
+//			$params['travelplan'][] = $item['placename'];
+//		}
+//		foreach($travelhistorys as $item){
+//			$params['travelhistory'][] = $item['placename'];
+//		}
 
 		$this->getView()->make('index.index',$params);
 	}

@@ -30,9 +30,6 @@ class UserModel
         $this->mch = $mch;
     }
 
-
-
-
     /**
      * 查询用户列表
      * @author Alan
@@ -226,7 +223,7 @@ class UserModel
      **/
     public function UserLogin($params)
     {
-        $sql = "select * from strongculture_system_user
+        $sql = "select * from concap_user
                 where `status` = 1 AND isdel = 0 AND username = '{$params['username']}'";
 
         $row = $this->dbh->select_row($sql);
@@ -249,7 +246,7 @@ class UserModel
 
     public function setUserInfo($params,$id)
     {
-        return $this->dbh->update('strongculture_system_user',$params,'sysno=' . intval($id));
+        return $this->dbh->update('concap_user',$params,'sysno=' . intval($id));
     }
 
     /**

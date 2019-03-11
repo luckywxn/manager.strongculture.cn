@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>强势文化学习系统</title>
+    <title>后台管理系统</title>
     <link href="favicon.ico" mce_href="favicon.ico" rel="icon">
     <!-- bootstrap - css -->
     <link href="/static/BJUI/B-JUI/themes/css/bootstrap.css" rel="stylesheet">
@@ -275,79 +275,16 @@
                 {{--<img src="upload/5489536.jpg" width="500">&nbsp;&nbsp;<img src="upload/timg.jpg" width="500">--}}
             {{--</div>--}}
             <div class="bjui-pageContent">
-                <div id="container"></div>
+                {{--<div id="container"></div>--}}
             </div>
         </div>
     </div>
 </div>
 </div>
 </div>
-
+</body>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/static/BJUI/B-JUI/other/ie10-viewport-bug-workaround.js"></script>
-
-<script type="text/javascript">
-
-    var map = new BMap.Map("container");          // 创建地图实例
-    var centerpoint = new BMap.Point(102.386103,45.040329);  // 112.182089,31.102821创建点坐标103.506039,36.908364
-    //编写自定义函数，创建去过的地方的标注
-    function addMarker(point){
-        // 创建图标对象
-        var myIcon = new BMap.Icon("../../../upload/小红旗.png",new BMap.Size(23, 30),{anchor: new BMap.Size(2, 28)});
-        // 创建标注对象并添加到地图
-        var marker = new BMap.Marker(point,{icon:myIcon});
-        map.addOverlay(marker);
-    }
-
-    //编写自定义函数，创建计划要去的地方的标注
-    function addMarker2(point){
-        // 创建图标对象
-        var myIcon = new BMap.Icon("../../../upload/小绿旗.png ", new BMap.Size(23, 30),{anchor: new BMap.Size(2, 28)});
-        // 创建标注对象并添加到地图
-        var marker = new BMap.Marker(point,{icon:myIcon});
-        map.addOverlay(marker);
-    }
-    // 创建地址解析器实例
-    var myGeo = new BMap.Geocoder();
-    // 将去过的地方的地址解析结果显示在地图上，并调整地图视野
-    @if(!empty($travelhistory))
-    @foreach($travelhistory as $item)
-    myGeo.getPoint('{{$item}}', function(point){
-        if (point) {
-            addMarker(point);
-        }
-    }, '{{$item}}'.substring(0, 3));
-    @endforeach
-    @endif
-
-    //将计划要去的地方的地址解析结果显示在地图上，并调整地图视野
-    @if(!empty($travelplan))
-    @foreach($travelplan as $item)
-    myGeo.getPoint('{{$item}}', function(point){
-        if (point) {
-            addMarker2(point);
-        }
-    }, '{{$item}}'.substring(0, 3));
-    @endforeach
-    @endif
-
-    map.addEventListener("click", function(e){
-        // 根据坐标得到地址描述
-        myGeo.getLocation(e.point, function(result){
-            if (result){
-                BJUI.alertmsg('info',result.address);
-            }
-        });
-    });
-
-    map.centerAndZoom(centerpoint, 6);                 // 初始化地图，设置中心点坐标和地图级别
-    map.enableScrollWheelZoom();
-    map.addControl(new BMap.ScaleControl());
-    map.addControl(new BMap.NavigationControl());
-    map.addControl(new BMap.OverviewMapControl());
-    map.addControl(new BMap.MapTypeControl());
-</script>
-</body>
 <script src="/static/BJUI/B-JUI/js/highlight.min.js"></script>
 <script src="/static/BJUI/B-JUI/js/jquery-ui.js"></script>
 <script src="/static/BJUI/B-JUI/js/raindrops.js"></script>
