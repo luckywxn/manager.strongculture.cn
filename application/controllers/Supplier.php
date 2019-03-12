@@ -41,7 +41,7 @@ class SupplierController extends Yaf_Controller_Abstract {
 
         $S = new SupplierModel(Yaf_Registry :: get("db"), Yaf_Registry :: get('mc'));
         $params =  $S->searchSupplier($search);
-        echo json_encode($params['list']);
+        echo json_encode($params);
     }
 
     /**
