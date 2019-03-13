@@ -2,8 +2,8 @@
 /**
  * 系统资源 Model
  *
- * @author  totti
- * @date    2014-07-10 16:33
+ * @author  wuxianneng
+ * @date    2016-07-10 16:33
  *
  */
 

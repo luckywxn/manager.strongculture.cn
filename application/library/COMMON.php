@@ -2,7 +2,7 @@
 /**
  * 公共方法类
  *
- * @author  James
+ * @author  wuxianneng
  * @date    2011-06-15 15:00
  * @version $Id$
  */

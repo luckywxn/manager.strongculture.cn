@@ -2,7 +2,7 @@
 /*/**
  * 视图引擎定义
  *
- * @author  James
+ * @author  wuxianneng
  * @date    2011-08-01 15:00
  * @version $Id$
  */

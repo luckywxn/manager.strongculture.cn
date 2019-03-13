@@ -2,7 +2,7 @@
 /**
  * 用户管理
  *
- * @author  Alan
+ * @author  wuxianneng
  * @date    2016-11-17 15:25:26
  *
  */
@@ -32,7 +32,7 @@ class UserModel
 
     /**
      * 查询用户列表
-     * @author Alan
+     * @author wuxianneng
      * @time 2016-11-11 14:38:38
      */
     public function getSystemUser($params)
@@ -57,7 +57,7 @@ class UserModel
 
         $result=array('totalRow'=>0,'totalPage'=>0,'list'=>array());
 
-        $sql = "SELECT count(su.`sysno`) FROM `strongculture_system_user` su {$where}";
+        $sql = "SELECT count(su.`sysno`) FROM `concap_user` su {$where}";
         $result['totalRow']=$this->dbh->select_one($sql);
 
         $result['totalPage'] = ceil($result['totalRow'] / $rows);
@@ -65,9 +65,9 @@ class UserModel
         $this->dbh->set_page_num($params['pageCurrent']);
         $this->dbh->set_page_rows($params['pageSize']);
 
-        $sql = "SELECT su.*,sr.rolename FROM `strongculture_system_user` su
-                left join `strongculture_system_user-r-role` urr on urr.user_sysno = su.sysno
-                left join strongculture_system_role sr on sr.sysno = urr.role_sysno
+        $sql = "SELECT su.*,sr.rolename FROM `concap_user` su
+                left join `concap_user_r_role` urr on urr.user_sysno = su.sysno
+                left join concap_role sr on sr.sysno = urr.role_sysno
                 ".$where.$order;
         $result['list'] = $this->dbh->select_page($sql);
         
@@ -78,7 +78,7 @@ class UserModel
      *通过会员账号查询详细信息
      */
     public function getUserByName($name){
-        $sql = "SELECT * FROM strongculture_system_user WHERE username = '$name'";
+        $sql = "SELECT * FROM concap_user WHERE username = '$name'";
         return $this->dbh->select_row($sql);
     }
 
@@ -86,13 +86,13 @@ class UserModel
      * 通过会员id查会员级别
      */
     public function getRoleByUserId($id){
-        $sql = "SELECT role_sysno FROM `strongculture_system_user-r-role` WHERE user_sysno = '$id'";
+        $sql = "SELECT role_sysno FROM `concap_user_r_role` WHERE user_sysno = '$id'";
         return $this->dbh->select_one($sql);
     }
 
     /**
      * 添加用户
-     * @author Alan
+     * @author wuxianneng
      * @time 2016-11-14 15:21:32
      */
     public function addUser($params,$privileges = "")
@@ -105,14 +105,14 @@ class UserModel
         }
         $this->dbh->begin();
         try{
-            $res = $this->dbh->insert('strongculture_system_user', $params);
+            $res = $this->dbh->insert('concap_user', $params);
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
             }
 
             $id = $res;
-            $res = $this->dbh->delete('strongculture_system_user-r-role', 'user_sysno=' . intval($id));
+            $res = $this->dbh->delete('concap_user_r_role', 'user_sysno=' . intval($id));
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
@@ -125,7 +125,7 @@ class UserModel
                             'user_sysno' => $id,
                             'role_sysno' => $value,
                         );
-                        $res = $this->dbh->insert('strongculture_system_user-r-role', $privilegesdata);
+                        $res = $this->dbh->insert('concap_user_r_role', $privilegesdata);
                         if (!$res) {
                             $this->dbh->rollback();
                             return false;
@@ -146,9 +146,9 @@ class UserModel
 
     public  function getUserById($id = 0)
     {
-        $sql = "select p.*,sr.rolename from strongculture_system_user p
-                left join `strongculture_system_user-r-role` urr on urr.user_sysno = p.sysno
-                left join strongculture_system_role sr on sr.sysno = urr.role_sysno
+        $sql = "select p.*,sr.rolename from concap_user p
+                left join `concap_user_r_role` urr on urr.user_sysno = p.sysno
+                left join concap_role sr on sr.sysno = urr.role_sysno
                 where p.sysno = $id ";
 
         return $this->dbh->select_row($sql);
@@ -160,7 +160,7 @@ class UserModel
 
     public function roleList()
     {
-        $sql = "select * from strongculture_system_role WHERE status =1 AND isdel =0";
+        $sql = "select * from concap_role WHERE status =1 AND isdel =0";
         return $this->dbh->select($sql);
     }
 
@@ -168,13 +168,13 @@ class UserModel
     {
         $this->dbh->begin();
         try {
-            $res = $this->dbh->update('strongculture_system_user', $data, 'sysno=' . intval($id));
+            $res = $this->dbh->update('concap_user', $data, 'sysno=' . intval($id));
             if (!$res) {
                 $this->dbh->rollback();
                 return false;
             }
 
-            $res = $this->dbh->delete('strongculture_system_user-r-role', 'user_sysno=' . intval($id));
+            $res = $this->dbh->delete('concap_user_r_role', 'user_sysno=' . intval($id));
 
             if (!$res) {
                 $this->dbh->rollback();
@@ -189,7 +189,7 @@ class UserModel
                             'role_sysno' => $value,
                         );
 
-                        $res = $this->dbh->insert('strongculture_system_user-r-role', $privilegesdata);
+                        $res = $this->dbh->insert('concap_user_r_role', $privilegesdata);
                         if (!$res) {
                             $this->dbh->rollback();
                             return false;
@@ -211,14 +211,14 @@ class UserModel
     // 根据 id 获取 用户已经绑定的角色
     public function getUserPrivilege($id)
     {
-        $sql = "SELECT * FROM `strongculture_system_user-r-role` WHERE user_sysno = $id";
+        $sql = "SELECT * FROM `concap_user_r_role` WHERE user_sysno = $id";
         return $this->dbh->select($sql);
     }
 
 
     /**
      * 用户登陆校验
-     * @author Alan
+     * @author wuxianneng
      * @time 2016-11-15 13:48:17
      **/
     public function UserLogin($params)
@@ -256,7 +256,7 @@ class UserModel
     {
         $params['isdel'] = 1;
         $params['status'] = 2;
-        return $this->dbh->update('strongculture_system_user',$params,'sysno=' . intval($id));
+        return $this->dbh->update('concap_user',$params,'sysno=' . intval($id));
     }
 
 
@@ -277,7 +277,7 @@ class UserModel
 
         $where = ' isdel =0 AND ';
         $where .= implode(' OR ', $filter); 
-        $sql =  "SELECT sysno FROM strongculture_system_user WHERE $where";
+        $sql =  "SELECT sysno FROM concap_user WHERE $where";
         $data = $this->dbh->select_one($sql);
         return $data;
     }

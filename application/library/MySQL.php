@@ -1,8 +1,8 @@
 <?php
 /**
- * @Author: Dujiangjiang
+ * @Author: wuxianneng
  * @Date:   2015-12-07 09:47:54
- * @Last Modified by:   Dujiangjiang
+ * @Last Modified by:   wuxianneng
  * @Last Modified time: 2016-01-15 10:51:47
  */
 class MySQL {

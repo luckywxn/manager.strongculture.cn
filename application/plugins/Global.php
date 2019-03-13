@@ -1,8 +1,8 @@
 <?php
 /**
  *
- * @author  James
- * @date    2011-10-25 15:00
+ * @author  wuxianneng
+ * @date    2016-10-25 15:00
  * @version $Id$
  */
 
